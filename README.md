@@ -1,5 +1,8 @@
 # GiikuCamp_vol3
-技育キャンプvol.3 2025年05月
+技育キャンプvol.3 2025年05月に制作
+
+# Team Name
+はりとまとL
 
 # Team Name
 はりとまとL
