@@ -4,9 +4,6 @@
 # Team Name
 はりとまとL
 
-# Team Name
-はりとまとL
-
 # Team Alpha: 学習がどこに使われているか可視化するアプリ
 
 ## 概要
