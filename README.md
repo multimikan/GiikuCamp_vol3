@@ -1,6 +1,9 @@
 # GiikuCamp_vol3
 技育キャンプvol.3 2025年05月
 
+# Team Name
+はりとまとL
+
 # Team Alpha: 学習がどこに使われているか可視化するアプリ
 
 ## 概要
