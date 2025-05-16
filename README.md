@@ -6,7 +6,7 @@
 ## 技術スタック
 - フロントエンド: SwiftUI
 - バックエンド: firebase
-- 機械学習: YOLOv5(open images v7も検討)
+- 機械学習: YOLOv8m
 
 ## 使い方
 -
