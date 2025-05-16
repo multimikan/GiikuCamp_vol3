@@ -1,7 +1,7 @@
 # About
 技育キャンプvol.3 2025年05月に制作
 
-# Team Name
+## Team Name
 はりとまとL
 
 # Team Alpha: 学習がどこに使われているか可視化するアプリ
