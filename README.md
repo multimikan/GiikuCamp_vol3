@@ -1,4 +1,4 @@
-# GiikuCamp_vol3
+# About
 技育キャンプvol.3 2025年05月に制作
 
 # Team Name
