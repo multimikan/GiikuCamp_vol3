@@ -10,6 +10,24 @@ class ChatViewModel: ObservableObject {
     
     init(apiClient: GPTAPIClient = GPTAPIClient(apiKey: Environment.openAIAPIKey)) {
         self.apiClient = apiClient
+        
+        // 初期化時にシステムプロンプトを追加
+        addDefaultSystemPrompt()
+    }
+    
+    private func addDefaultSystemPrompt() {
+        // システムプロンプトをここに設定
+        let systemPrompt = "あなたは役立つAIアシスタントです。簡潔かつ丁寧に応答してください。"
+        
+        let systemMessage = ChatMessage(
+            id: UUID().uuidString,
+            role: "system",
+            content: systemPrompt,
+            createdAt: Date()
+        )
+        
+        // システムメッセージをメッセージリストに追加（UIには表示されない）
+        messages.append(systemMessage)
     }
     
     func sendMessage() async {
