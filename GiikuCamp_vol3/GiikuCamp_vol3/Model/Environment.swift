@@ -2,5 +2,5 @@ import Foundation
 
 enum Environment {
     // OpenAI API Keyを設定してください
-    static let openAIAPIKey = "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"
+    static let openAIAPIKey = "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"
 } 
