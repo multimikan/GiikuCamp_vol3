@@ -10,6 +10,9 @@
 		81008FED2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
+		81A9A1D02DDA203A00298AA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */; };
+		81A9A1D12DDA203A00298AA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */; };
+		81A9A1D22DDA203A00298AA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */; };
 		9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
@@ -32,38 +35,15 @@
 
 /* Begin PBXFileReference section */
 		81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiikuCamp_vol3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED901D2DD7052B00EB4E93 /* GiikuCamp_vol3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED90272DD7052B00EB4E93 /* GiikuCamp_vol3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8100901F2DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "GiikuCamp_vol3" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Model/User.swift,
-			);
-			target = 81ED900C2DD7052A00EB4E93 /* GiikuCamp_vol3 */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		810090202DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "Copy Bundle Resources" phase from "GiikuCamp_vol3" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 81ED900B2DD7052A00EB4E93 /* Resources */;
-			membershipExceptions = (
-				Model/User.swift,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		81ED900F2DD7052A00EB4E93 /* GiikuCamp_vol3 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				8100901F2DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "GiikuCamp_vol3" target */,
-				810090202DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "Copy Bundle Resources" phase from "GiikuCamp_vol3" target */,
-			);
 			path = GiikuCamp_vol3;
 			sourceTree = "<group>";
 		};
@@ -120,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */,
+				81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */,
 				81ED901D2DD7052B00EB4E93 /* GiikuCamp_vol3Tests.xctest */,
 				81ED90272DD7052B00EB4E93 /* GiikuCamp_vol3UITests.xctest */,
 			);
@@ -250,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A9A1D22DDA203A00298AA6 /* GoogleService-Info.plist in Resources */,
 				81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */,
+				81A9A1D02DDA203A00298AA6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81008FED2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */,
+				81A9A1D12DDA203A00298AA6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
