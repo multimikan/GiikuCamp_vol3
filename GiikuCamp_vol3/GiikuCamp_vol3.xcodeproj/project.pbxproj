@@ -41,33 +41,9 @@
 		9B23CCCE2DDA1F39007D671E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8100901F2DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "GiikuCamp_vol3" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Model/User.swift,
-			);
-			target = 81ED900C2DD7052A00EB4E93 /* GiikuCamp_vol3 */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		810090202DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "Copy Bundle Resources" phase from "GiikuCamp_vol3" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 81ED900B2DD7052A00EB4E93 /* Resources */;
-			membershipExceptions = (
-				Model/User.swift,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		81ED900F2DD7052A00EB4E93 /* GiikuCamp_vol3 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				8100901F2DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "GiikuCamp_vol3" target */,
-				810090202DD8BF1B00A4EA91 /* Exceptions for "GiikuCamp_vol3" folder in "Copy Bundle Resources" phase from "GiikuCamp_vol3" target */,
-			);
 			path = GiikuCamp_vol3;
 			sourceTree = "<group>";
 		};
