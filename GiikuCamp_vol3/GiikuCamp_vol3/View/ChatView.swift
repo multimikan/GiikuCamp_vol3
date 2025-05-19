@@ -54,6 +54,9 @@ struct ChatView: View {
                         .foregroundColor(.blue)
                 }
                 .disabled(viewModel.isLoading || viewModel.inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                NavigationLink("📷絶対決めてみせる"){
+                    SampleCameraView()
+                }
             }
             .padding()
         }

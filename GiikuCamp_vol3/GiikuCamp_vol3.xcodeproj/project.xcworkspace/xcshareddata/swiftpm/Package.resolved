@@ -1,5 +1,5 @@
 {
-  "originHash" : "c63c63846d9c539229e96de38d6af51417e28c0ee9a0bc48bd0f0f19d923c329",
+  "originHash" : "ad08dead30b67bd54d4a0d7a55ce392b0da49c9f9d7746e2611648bd0d36094e",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -116,6 +116,15 @@
       "state" : {
         "revision" : "d72aed98f8253ec1aa9ea1141e28150f408cf17f",
         "version" : "1.29.0"
+      }
+    },
+    {
+      "identity" : "yolo-ios-app",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ultralytics/yolo-ios-app",
+      "state" : {
+        "branch" : "main",
+        "revision" : "20c0c7ac104f0a5cdfce392ef3083ae25f391077"
       }
     }
   ],

@@ -10,11 +10,10 @@
 		81008FED2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
-
-		81A9A1D02DDA203A00298AA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */; };
-		81A9A1D12DDA203A00298AA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */; };
-		81A9A1D22DDA203A00298AA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */; };
-
+		8100B7E52DDB939B00723102 /* YOLO in Frameworks */ = {isa = PBXBuildFile; productRef = 8100B7E42DDB939B00723102 /* YOLO */; };
+		8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
+		8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
+		8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
 		9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
@@ -37,11 +36,10 @@
 
 /* Begin PBXFileReference section */
 		81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11m-seg.mlpackage"; sourceTree = "<group>"; };
 		81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiikuCamp_vol3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED901D2DD7052B00EB4E93 /* GiikuCamp_vol3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED90272DD7052B00EB4E93 /* GiikuCamp_vol3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B23CCCE2DDA1F39007D671E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -68,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */,
+				8100B7E52DDB939B00723102 /* YOLO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +95,7 @@
 				81ED902A2DD7052B00EB4E93 /* GiikuCamp_vol3UITests */,
 				81ED900E2DD7052A00EB4E93 /* Products */,
 				81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */,
+				8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,9 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */,
-				81A9A1CF2DDA203A00298AA6 /* GoogleService-Info.plist */,
 				81ED901D2DD7052B00EB4E93 /* GiikuCamp_vol3Tests.xctest */,
-				9B23CCCE2DDA1F39007D671E /* GoogleService-Info.plist */,
 				81ED90272DD7052B00EB4E93 /* GiikuCamp_vol3UITests.xctest */,
 			);
 			name = Products;
@@ -132,6 +130,7 @@
 			name = GiikuCamp_vol3;
 			packageProductDependencies = (
 				9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */,
+				8100B7E42DDB939B00723102 /* YOLO */,
 			);
 			productName = GiikuCamp_vol3;
 			productReference = 81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */;
@@ -217,6 +216,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 81ED900E2DD7052A00EB4E93 /* Products */;
@@ -235,9 +235,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-				81A9A1D22DDA203A00298AA6 /* GoogleService-Info.plist in Resources */,
-
 				81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,9 +244,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */,
-
-				81A9A1D02DDA203A00298AA6 /* GoogleService-Info.plist in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +252,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81008FED2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */,
-
-				81A9A1D12DDA203A00298AA6 /* GoogleService-Info.plist in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +589,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ultralytics/yolo-ios-app";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -606,6 +608,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8100B7E42DDB939B00723102 /* YOLO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */;
+			productName = YOLO;
+		};
 		9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
