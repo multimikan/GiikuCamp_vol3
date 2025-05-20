@@ -9,7 +9,7 @@ class ChatViewModel: ObservableObject {
     private let apiClient: GPTAPIClient
     var currentUser: User
     
-    init(apiClient: GPTAPIClient = GPTAPIClient(apiKey: Environment.openAIAPIKey),
+    init(apiClient: GPTAPIClient = GPTAPIClient(apiKey: MyEnvironment.openAIAPIKey),
          user: User = User(name: "ゲスト")) {
         self.apiClient = apiClient
         self.currentUser = user
