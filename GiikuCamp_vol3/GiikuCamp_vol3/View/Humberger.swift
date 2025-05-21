@@ -79,7 +79,7 @@ struct HamburgerMenuSampleView: View {
                         }
                     }
 //                NavigationLink(destination: ChatView()){
-//                    Label("履歴",systemName: "clock")
+//                    Label("履歴",systemImage: "clock")
 //                }
                 
                 HStack {
@@ -101,7 +101,7 @@ struct HamburgerMenuSampleView: View {
                                     .toggleStyle(CheckBoxToggleStyle())
                             } label: {
                                 Toggle(isOn: $isElementaryAllSelected) {
-                                    Label("小学校", systemName: "graduationcap")
+                                    Label("小学校", systemImage: "graduationcap")
                                 }.toggleStyle(CheckBoxToggleStyle())
                             }
                             .onChange(of: isElementaryAllSelected) { newValue in
@@ -140,7 +140,7 @@ struct HamburgerMenuSampleView: View {
                                     .toggleStyle(CheckBoxToggleStyle())
                             } label: {
                                 Toggle(isOn: $isJuniorAllSelected) {
-                                    Label("中学校", systemName: "graduationcap")
+                                    Label("中学校", systemImage: "graduationcap")
                                 }.toggleStyle(CheckBoxToggleStyle())
                             }
                             .onChange(of: isJuniorAllSelected) { newValue in
@@ -179,7 +179,7 @@ struct HamburgerMenuSampleView: View {
                                     .toggleStyle(CheckBoxToggleStyle())
                             } label: {
                                 Toggle(isOn: $isHighAllSelected) {
-                                    Label("高校", systemName: "graduationcap")
+                                    Label("高校", systemImage: "graduationcap")
                                 }.toggleStyle(CheckBoxToggleStyle())
                             }
                             .onChange(of: isHighAllSelected) { newValue in
@@ -207,18 +207,18 @@ struct HamburgerMenuSampleView: View {
 
 
                             }label:{
-                                Label("科目",systemName: "clock")
+                                Label("科目",systemImage: "clock")
                                 .padding(.vertical, 20)}
                         
                         //履歴
                         NavigationLink(destination: ChatView()){
-                            Label("履歴",systemName: "clock")
+                            Label("履歴",systemImage: "clock")
                                 .padding(.vertical, 20)
                         }
                     
                         //お気に入り
                         NavigationLink(destination: ChatView()){
-                            Label("お気に入り", systemName: "star")
+                            Label("お気に入り", systemImage: "star")
                                 .padding(.vertical, 20)
                         }
                         
@@ -230,7 +230,7 @@ struct HamburgerMenuSampleView: View {
                             }
                             isSettingsPresented = true
                         } label: {
-                            Label("設定",systemName: "gearshape")
+                            Label("設定",systemImage: "gearshape")
                                 .padding(.vertical, 20)
                         }
                     }
@@ -245,21 +245,13 @@ struct HamburgerMenuSampleView: View {
         }
         
         
-        //    func menuLabel(_ text: String, systemName: String)->some View{
+        //    func menuLabel(_ text: String, systemImage: String)->some View{
         //        return HStack{
         //            Image(systemName: systemName).frame(width: imageSize)
         //                .padding(.horizontal)
         //            Text(text).font(.headline)        }
         //    }
         //}
-    }
-    func Label(_ text: String, systemName: String) -> some View {
-        HStack {
-            Image(systemName: systemName)
-                .frame(width: imageSize)
-                .padding(.horizontal)
-            Text(text).font(.headline)
-        }
     }
 }
 
