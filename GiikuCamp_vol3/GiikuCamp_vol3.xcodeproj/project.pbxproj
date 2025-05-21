@@ -14,6 +14,7 @@
 		8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
 		8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
 		8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
+		819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 819501382DDDC58900F8637B /* FirebaseFirestore */; };
 		81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 81CB01672DDC77A20029E819 /* FirebaseAuth */; };
 		81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC52DDC918200A03B41 /* GoogleSignIn */; };
 		81D39FC82DDC918200A03B41 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC72DDC918200A03B41 /* GoogleSignInSwift */; };
@@ -73,6 +74,7 @@
 				81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */,
 				81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */,
 				8100B7E52DDB939B00723102 /* YOLO in Frameworks */,
+				819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +95,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		819501372DDDC58900F8637B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		81ED90042DD7052A00EB4E93 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +111,7 @@
 				81ED900E2DD7052A00EB4E93 /* Products */,
 				81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */,
 				8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */,
+				819501372DDDC58900F8637B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +150,7 @@
 				81CB01672DDC77A20029E819 /* FirebaseAuth */,
 				81D39FC52DDC918200A03B41 /* GoogleSignIn */,
 				81D39FC72DDC918200A03B41 /* GoogleSignInSwift */,
+				819501382DDDC58900F8637B /* FirebaseFirestore */,
 			);
 			productName = GiikuCamp_vol3;
 			productReference = 81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */;
@@ -634,6 +645,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */;
 			productName = YOLO;
+		};
+		819501382DDDC58900F8637B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		81CB01672DDC77A20029E819 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

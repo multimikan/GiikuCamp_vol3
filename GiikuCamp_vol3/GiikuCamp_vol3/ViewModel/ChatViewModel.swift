@@ -7,21 +7,25 @@ class ChatViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     private let apiClient: GPTAPIClient
-    var currentUser: User
+    private let cloudViewModel: CloudViewModel
     
     init(apiClient: GPTAPIClient = GPTAPIClient(apiKey: MyEnvironment.openAIAPIKey),
-         user: User = User(name: "ゲスト")) {
+         cloudViewModel: CloudViewModel) {
         self.apiClient = apiClient
-        self.currentUser = user
+        self.cloudViewModel = cloudViewModel
         
         // 初期化時にシステムプロンプトを追加
         addDefaultSystemPrompt()
+        
+        // 初期化時にFirestoreからデータを取得
+        Task {
+            await refreshUserData()
+        }
     }
     
     private func addDefaultSystemPrompt() {
         // システムプロンプトをここに設定
-        var systemPrompt = "提示したオブジェクトについて、そのオブジェクトが開発された際に用いられたパーツごとに適当な教科の学習単元を\(currentUser.age)歳までの学校指導要領内でユーザーに説明してください。回答時は、ユーザーが13歳未満の際は漢字を使わずにフランクな口調で回答をお願いします。回答時は以下のJSONフォーマットに必ず従うこと(バックスラッシュは無視)。また、\(currentUser.language)語で回答すること。\n\n"
-        systemPrompt += "[{\"subject\":\"教科の名前\",\"object\":\"オブジェクトまたはパーツの名前\",\"curriculum\":\"単元の名前\",\"description\":\"簡単な説明\",\"deep_description\":\"詳細な説明\"}]"
+        let systemPrompt = createSystemPrompt()
         
         let systemMessage = ChatMessage(
             id: UUID().uuidString,
@@ -32,6 +36,16 @@ class ChatViewModel: ObservableObject {
         
         // システムメッセージをメッセージリストに追加（UIには表示されない）
         messages.append(systemMessage)
+    }
+    
+    private func createSystemPrompt() -> String {
+        let age = cloudViewModel.data.born
+        let language = cloudViewModel.data.language
+        
+        var systemPrompt = "提示したオブジェクトについて、そのオブジェクトが開発された際に用いられたパーツごとに適当な教科の学習単元を\(age)歳までの学校指導要領内でユーザーに説明してください。回答時は、ユーザーが13歳未満の際は漢字を使わずにフランクな口調で回答をお願いします。回答時は以下のJSONフォーマットに必ず従うこと(バックスラッシュは無視)。また、\(language)語で回答すること。\n\n"
+        systemPrompt += "[{\"subject\":\"教科の名前\",\"object\":\"オブジェクトまたはパーツの名前\",\"curriculum\":\"単元の名前\",\"description\":\"簡単な説明\",\"deep_description\":\"詳細な説明\"}]"
+        
+        return systemPrompt
     }
     
     // JSONをSwiftの二次元配列（[[String: String]]）に変換する関数
@@ -77,41 +91,10 @@ class ChatViewModel: ObservableObject {
         return String(jsonPart)
     }
     
-    // ユーザー情報を更新
-    func updateUser(name: String, language: String? = nil, age: Int? = nil, email: String? = nil) {
-        currentUser.name = name
-        
-        if let language = language {
-            currentUser.language = language
-        }
-        
-        if let age = age {
-            currentUser.age = age
-        }
-        
-        if let email = email {
-            currentUser.email = email
-        }
-        
-        // ユーザー情報が更新されたらシステムプロンプトも更新
-        updateSystemPrompt()
-    }
-    
     // システムプロンプトを更新
-    private func updateSystemPrompt() {
+    func updateSystemPrompt() {
         if let index = messages.firstIndex(where: { $0.role == "system" }) {
-            var systemPrompt = "提示したオブジェクトについて、そのオブジェクトが開発された際に用いられた(必要に応じてパーツごとに分けて解説することも可)適当な教科の学習単元を\(currentUser.age)歳までの学校指導要領内で回答してください。回答時は以下のJSONフォーマットに必ず従うこと(バックスラッシュは無視)。また、\(currentUser.language)語で回答すること。\n\n"
-            systemPrompt += "[{\"subject\":\"教科の名前\",\"object\":\"オブジェクトまたはパーツの名前\",\"curriculum\":\"単元の名前\",\"description\":\"簡単な説明\",\"deep_description\":\"詳細な説明\"}]"
-            
-            // ユーザー情報を追加
-            systemPrompt += "\n\nユーザー情報:\n"
-            systemPrompt += "名前: \(currentUser.name)\n"
-            systemPrompt += "言語: \(currentUser.language)\n"
-            systemPrompt += "年齢: \(currentUser.age)\n"
-            
-            if let email = currentUser.email {
-                systemPrompt += "メール: \(email)\n"
-            }
+            let systemPrompt = createSystemPrompt()
             
             let newSystemMessage = ChatMessage(
                 id: UUID().uuidString,
@@ -123,6 +106,15 @@ class ChatViewModel: ObservableObject {
             // 既存のシステムメッセージを更新
             messages[index] = newSystemMessage
         }
+    }
+    
+    // Firestoreからデータを最新化
+    func refreshUserData() async {
+        // CloudViewModelのデータを更新
+        await cloudViewModel.fetchCloud()
+        
+        // システムプロンプトを更新
+        updateSystemPrompt()
     }
     
     func sendMessage() async {
@@ -137,6 +129,9 @@ class ChatViewModel: ObservableObject {
         }
         
         do {
+            // Firestoreからの最新データを取得
+            await refreshUserData()
+            
             // APIメッセージを作成（content部分はそのままの文字列）
             let apiMessages = messages.map { Message(role: $0.role, content: $0.content) }
             let response = try await apiClient.sendMessage(apiMessages)
