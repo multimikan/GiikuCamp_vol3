@@ -1,26 +1,39 @@
 import SwiftUI
 
 struct ChatView: View {
-    @StateObject private var viewModel = ChatViewModel()
+    @StateObject private var cloudViewModel = CloudViewModel()
+    @StateObject private var viewModel: ChatViewModel
     @State private var showingUserProfile = false
-    @State private var userName = ""
     @State private var userLanguage = ""
     @State private var userAge = ""
     @State private var userEmail = ""
+    
+    init() {
+        // ViewModelの初期化
+        let cloudVM = CloudViewModel()
+        _cloudViewModel = StateObject(wrappedValue: cloudVM)
+        _viewModel = StateObject(wrappedValue: ChatViewModel(cloudViewModel: cloudVM))
+    }
     
     var body: some View {
         VStack {
             // ヘッダー（ユーザー情報）
             HStack {
-                Text("ユーザー: \(viewModel.currentUser.name)")
-                    .font(.caption)
-                    .foregroundColor(.gray)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("言語: \(cloudViewModel.data.language)")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    if let email = cloudViewModel.data.email, !email.isEmpty {
+                        Text("メール: \(email)")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
                 Spacer()
                 Button("プロフィール") {
-                    userName = viewModel.currentUser.name
-                    userLanguage = viewModel.currentUser.language
-                    userAge = String(viewModel.currentUser.age)
-                    userEmail = viewModel.currentUser.email ?? ""
+                    userLanguage = cloudViewModel.data.language
+                    userAge = String(cloudViewModel.data.born)
+                    userEmail = cloudViewModel.data.email ?? ""
                     showingUserProfile = true
                 }
                 .font(.caption)
@@ -63,26 +76,40 @@ struct ChatView: View {
         .navigationTitle("GPT Chat")
         .sheet(isPresented: $showingUserProfile) {
             UserProfileView(
-                userName: $userName,
                 userLanguage: $userLanguage,
                 userAge: $userAge,
                 userEmail: $userEmail,
                 onSave: {
-                    viewModel.updateUser(
-                        name: userName,
-                        language: userLanguage,
-                        age: Int(userAge) ?? viewModel.currentUser.age,
-                        email: userEmail.isEmpty ? nil : userEmail
-                    )
+                    updateUserData()
                 },
                 isPresented: $showingUserProfile
             )
+        }
+        .onAppear {
+            // 画面表示時にFirestoreからデータを更新
+            Task {
+                await cloudViewModel.fetchCloud()
+                await viewModel.refreshUserData()
+            }
+        }
+    }
+    
+    private func updateUserData() {
+        cloudViewModel.data.language = userLanguage
+        if let age = Int(userAge) {
+            cloudViewModel.data.born = age
+        }
+        cloudViewModel.data.email = userEmail.isEmpty ? nil : userEmail
+        
+        Task {
+            await cloudViewModel.saveData()
+            // システムプロンプトを更新
+            viewModel.updateSystemPrompt()
         }
     }
 }
 
 struct UserProfileView: View {
-    @Binding var userName: String
     @Binding var userLanguage: String
     @Binding var userAge: String
     @Binding var userEmail: String
@@ -93,15 +120,16 @@ struct UserProfileView: View {
         NavigationView {
             Form {
                 Section(header: Text("基本情報")) {
-                    TextField("名前", text: $userName)
                     TextField("言語", text: $userLanguage)
                     TextField("年齢", text: $userAge)
                         .keyboardType(.numberPad)
                 }
                 
                 Section(header: Text("連絡先")) {
-                    TextField("メール (任意)", text: $userEmail)
+                    TextField("メールアドレス", text: $userEmail)
                         .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 }
             }
             .navigationTitle("ユーザー設定")
