@@ -17,7 +17,7 @@ struct SplashView: View {
                 .frame(width: 150, height: 150)
 
             // アプリ名
-            Text("教景（きょうけい）")
+            Text("アプリ名")
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
