@@ -10,6 +10,20 @@
 		81008FED2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
+		8100B7E52DDB939B00723102 /* YOLO in Frameworks */ = {isa = PBXBuildFile; productRef = 8100B7E42DDB939B00723102 /* YOLO */; };
+		8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
+		8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
+		8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
+		8124D5AC2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
+		8124D5AD2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
+		8124D5AE2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
+		8124D5B02DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
+		8124D5B12DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
+		8124D5B22DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
+		819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 819501382DDDC58900F8637B /* FirebaseFirestore */; };
+		81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 81CB01672DDC77A20029E819 /* FirebaseAuth */; };
+		81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC52DDC918200A03B41 /* GoogleSignIn */; };
+		81D39FC82DDC918200A03B41 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC72DDC918200A03B41 /* GoogleSignInSwift */; };
 		9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +46,9 @@
 
 /* Begin PBXFileReference section */
 		81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11m-seg.mlpackage"; sourceTree = "<group>"; };
+		8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11s-seg.mlpackage"; sourceTree = "<group>"; };
+		8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11n-seg.mlpackage"; sourceTree = "<group>"; };
 		81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiikuCamp_vol3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED901D2DD7052B00EB4E93 /* GiikuCamp_vol3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED90272DD7052B00EB4E93 /* GiikuCamp_vol3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +77,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D39FC82DDC918200A03B41 /* GoogleSignInSwift in Frameworks */,
 				9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */,
+				81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */,
+				81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */,
+				8100B7E52DDB939B00723102 /* YOLO in Frameworks */,
+				819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +103,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		819501372DDDC58900F8637B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		81ED90042DD7052A00EB4E93 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +118,10 @@
 				81ED902A2DD7052B00EB4E93 /* GiikuCamp_vol3UITests */,
 				81ED900E2DD7052A00EB4E93 /* Products */,
 				81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */,
+				8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */,
+				819501372DDDC58900F8637B /* Frameworks */,
+				8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */,
+				8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +156,11 @@
 			name = GiikuCamp_vol3;
 			packageProductDependencies = (
 				9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */,
+				8100B7E42DDB939B00723102 /* YOLO */,
+				81CB01672DDC77A20029E819 /* FirebaseAuth */,
+				81D39FC52DDC918200A03B41 /* GoogleSignIn */,
+				81D39FC72DDC918200A03B41 /* GoogleSignInSwift */,
+				819501382DDDC58900F8637B /* FirebaseFirestore */,
 			);
 			productName = GiikuCamp_vol3;
 			productReference = 81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */;
@@ -208,6 +246,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */,
+				81D39FC42DDC918200A03B41 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 81ED900E2DD7052A00EB4E93 /* Products */;
@@ -253,6 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8124D5AE2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
+				8124D5B12DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
+				8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +303,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
+				8124D5AD2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
+				8124D5B22DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +313,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8124D5AC2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
+				8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
+				8124D5B02DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +465,7 @@
 				DEVELOPMENT_TEAM = 76RN82DG87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GiikuCamp-vol3-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,6 +476,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "koki-takahashi.GiikuCamp-vol3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -445,6 +496,7 @@
 				DEVELOPMENT_TEAM = 76RN82DG87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GiikuCamp-vol3-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -455,6 +507,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "koki-takahashi.GiikuCamp-vol3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -577,6 +630,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ultralytics/yolo-ios-app";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		81D39FC42DDC918200A03B41 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -588,6 +657,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8100B7E42DDB939B00723102 /* YOLO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */;
+			productName = YOLO;
+		};
+		819501382DDDC58900F8637B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		81CB01672DDC77A20029E819 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		81D39FC52DDC918200A03B41 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81D39FC42DDC918200A03B41 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		81D39FC72DDC918200A03B41 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81D39FC42DDC918200A03B41 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

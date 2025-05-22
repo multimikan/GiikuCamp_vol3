@@ -5,7 +5,7 @@
 
 ## 技術スタック
 - フロントエンド: SwiftUI
-- バックエンド: firebase
+- バックエンド: Firebase
 - 機械学習: YOLO11
 
 ## 使い方
