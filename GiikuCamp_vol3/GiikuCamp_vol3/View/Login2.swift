@@ -12,8 +12,10 @@ struct SignInOptionsView: View {
     
     var body: some View {
         VStack(spacing: 14) {
+            
             Text("サインイン方法を選択")
                 .font(.title2)
+                .multilineTextAlignment(.center)
                 .padding()
 
             SignInButton(label: "Appleでサインイン", systemImage: "applelogo", backgroundColor: .black)
@@ -23,10 +25,11 @@ struct SignInOptionsView: View {
             Button("キャンセル") {
                 dismiss()
             }
-            .foregroundColor(.gray)
+            .foregroundColor(.blue)
             .padding(.top, 40)
         }
         .padding()
+        .background(Color.white)
     }
 }
 
