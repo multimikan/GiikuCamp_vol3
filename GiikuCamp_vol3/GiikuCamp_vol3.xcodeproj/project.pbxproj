@@ -14,6 +14,12 @@
 		8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
 		8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
 		8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
+		8124D5AC2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
+		8124D5AD2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
+		8124D5AE2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
+		8124D5B02DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
+		8124D5B12DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
+		8124D5B22DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
 		819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 819501382DDDC58900F8637B /* FirebaseFirestore */; };
 		81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 81CB01672DDC77A20029E819 /* FirebaseAuth */; };
 		81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC52DDC918200A03B41 /* GoogleSignIn */; };
@@ -41,6 +47,8 @@
 /* Begin PBXFileReference section */
 		81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11m-seg.mlpackage"; sourceTree = "<group>"; };
+		8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11s-seg.mlpackage"; sourceTree = "<group>"; };
+		8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11n-seg.mlpackage"; sourceTree = "<group>"; };
 		81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiikuCamp_vol3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED901D2DD7052B00EB4E93 /* GiikuCamp_vol3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED90272DD7052B00EB4E93 /* GiikuCamp_vol3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +120,8 @@
 				81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */,
 				8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */,
 				819501372DDDC58900F8637B /* Frameworks */,
+				8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */,
+				8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */,
 			);
 			sourceTree = "<group>";
 		};
@@ -283,6 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8124D5AE2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
+				8124D5B12DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
 				8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +304,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
+				8124D5AD2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
+				8124D5B22DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +313,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8124D5AC2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
 				8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
+				8124D5B02DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

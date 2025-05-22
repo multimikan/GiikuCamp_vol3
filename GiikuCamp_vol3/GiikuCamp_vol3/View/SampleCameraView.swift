@@ -11,7 +11,7 @@ import YOLO
 struct SampleCameraView: View {
     var body: some View {
         YOLOCamera(
-            modelPathOrName: "yolo11m-seg",
+            modelPathOrName: "yolo11n-seg",
             task: .segment,
             cameraPosition: .back
         )
