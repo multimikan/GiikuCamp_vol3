@@ -71,13 +71,22 @@ struct HamburgerMenuSampleView: View {
             })
             // サイドメニュー
             if isMenuOpen {
-                Color.black.opacity(0.5)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation {
-                            isMenuOpen = false
-                        }
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(hex: "#FFFF00"), // 黄色
+                        Color(hex: "#0066FF")  // 青
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .opacity(0.7)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    withAnimation {
+                        isMenuOpen = false
                     }
+                }
+
 //                NavigationLink(destination: ChatView()){
 //                    Label("履歴",systemImage: "clock")
 //                }

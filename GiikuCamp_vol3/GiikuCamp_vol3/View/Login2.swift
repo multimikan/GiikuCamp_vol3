@@ -11,25 +11,38 @@ struct SignInOptionsView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack(spacing: 14) {
+        ZStack {
+            // 背景グラデーション
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(hex: "#FFFF00").opacity(0.2),
+                    Color(hex: "#0066FF").opacity(0.2)
+                ]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea() // 全画面に拡張
             
-            Text("サインイン方法を選択")
-                .font(.title2)
-                .multilineTextAlignment(.center)
-                .padding()
-
-            SignInButton(label: "Appleでサインイン", systemImage: "applelogo", backgroundColor: .black)
-            SignInButton(label: "Googleでサインイン", systemImage: "globe", backgroundColor: .red)
-            SignInButton(label: "Yahoo! JAPAN IDでサインイン", systemImage: "person.circle", backgroundColor: .purple)
-
-            Button("キャンセル") {
-                dismiss()
+            VStack(spacing: 14) {
+                
+                Text("サインイン方法を選択")
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                SignInButton(label: "Appleでサインイン", systemImage: "applelogo", backgroundColor: .black)
+                SignInButton(label: "Googleでサインイン", systemImage: "globe", backgroundColor: .red)
+                SignInButton(label: "Yahoo! JAPAN IDでサインイン", systemImage: "person.circle", backgroundColor: .purple)
+                
+                Button("キャンセル") {
+                    dismiss()
+                }
+                .foregroundColor(.blue)
+                .padding(.top, 40)
             }
-            .foregroundColor(.blue)
-            .padding(.top, 40)
+            .padding()
+            //.background(Color.white)
         }
-        .padding()
-        .background(Color.white)
     }
 }
 
