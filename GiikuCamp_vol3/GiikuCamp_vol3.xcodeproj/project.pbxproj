@@ -10,8 +10,8 @@
 		81008FED2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
+		8128CB2F2DE0D2CF004FC816 /* YOLO in Frameworks */ = {isa = PBXBuildFile; productRef = 8128CB2E2DE0D2CF004FC816 /* YOLO */; };
 		819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 819501382DDDC58900F8637B /* FirebaseFirestore */; };
-		8199B2A02DE0B85400B7E341 /* YOLO in Frameworks */ = {isa = PBXBuildFile; productRef = 8199B29F2DE0B85400B7E341 /* YOLO */; };
 		81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 81CB01672DDC77A20029E819 /* FirebaseAuth */; };
 		81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC52DDC918200A03B41 /* GoogleSignIn */; };
 		81D39FC82DDC918200A03B41 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC72DDC918200A03B41 /* GoogleSignInSwift */; };
@@ -82,7 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81D39FC82DDC918200A03B41 /* GoogleSignInSwift in Frameworks */,
-				8199B2A02DE0B85400B7E341 /* YOLO in Frameworks */,
+				8128CB2F2DE0D2CF004FC816 /* YOLO in Frameworks */,
 				9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */,
 				81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */,
 				81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */,
@@ -165,7 +165,7 @@
 				81D39FC52DDC918200A03B41 /* GoogleSignIn */,
 				81D39FC72DDC918200A03B41 /* GoogleSignInSwift */,
 				819501382DDDC58900F8637B /* FirebaseFirestore */,
-				8199B29F2DE0B85400B7E341 /* YOLO */,
+				8128CB2E2DE0D2CF004FC816 /* YOLO */,
 			);
 			productName = GiikuCamp_vol3;
 			productReference = 81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */;
@@ -252,7 +252,7 @@
 			packageReferences = (
 				9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				81D39FC42DDC918200A03B41 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				81B22E8D2DE0B75400C74E97 /* XCLocalSwiftPackageReference "../../yolo-ios-app" */,
+				8128CB2D2DE0D2CF004FC816 /* XCLocalSwiftPackageReference "../yolo-ios-app" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 81ED900E2DD7052A00EB4E93 /* Products */;
@@ -638,9 +638,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		81B22E8D2DE0B75400C74E97 /* XCLocalSwiftPackageReference "../../yolo-ios-app" */ = {
+		8128CB2D2DE0D2CF004FC816 /* XCLocalSwiftPackageReference "../yolo-ios-app" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../yolo-ios-app";
+			relativePath = "../yolo-ios-app";
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -664,15 +664,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8128CB2E2DE0D2CF004FC816 /* YOLO */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = YOLO;
+		};
 		819501382DDDC58900F8637B /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		8199B29F2DE0B85400B7E341 /* YOLO */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 81B22E8D2DE0B75400C74E97 /* XCLocalSwiftPackageReference "../../yolo-ios-app" */;
-			productName = YOLO;
 		};
 		81CB01672DDC77A20029E819 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
