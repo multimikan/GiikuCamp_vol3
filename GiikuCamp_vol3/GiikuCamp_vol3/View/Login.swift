@@ -1,5 +1,5 @@
 //
-//  Login.swift
+//  SignUp.swift
 //  GiikuCamp_vol3
 //
 //  Created by SLJ-156 on 2025/05/20.
@@ -7,33 +7,70 @@
 
 import SwiftUI
 
-struct LoginSelectionView: View {
-    @State private var showSignInOptions = false
-
+struct SignInOptionsView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        VStack(spacing: 30) {
-            Text("アプリ名")
-                .font(.largeTitle)
-                .bold()
-
-            Button(action: {
-                showSignInOptions = true
-            }) {
-                Text("ログイン")
-                    .font(.headline)
-                    .foregroundColor(.white)
+        ZStack {
+            // 背景グラデーション
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(hex: "#FFFF00").opacity(0.2),
+                    Color(hex: "#0066FF").opacity(0.2)
+                ]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea() // 全画面に拡張
+            
+            VStack(spacing: 14) {
+                
+                Text("サインイン方法を選択")
+                    .font(.title)
+                    .multilineTextAlignment(.center)
                     .padding()
-                    .frame(width: 200)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                
+                SignInButton(label: "Appleでサインイン", systemImage: "applelogo", backgroundColor: .black)
+                SignInButton(label: "Googleでサインイン", systemImage: "globe", backgroundColor: .red)
+                SignInButton(label: "Yahoo! JAPAN IDでサインイン", systemImage: "person.circle", backgroundColor: .purple)
+                
+                Button("キャンセル") {
+                    dismiss()
+                }
+                .foregroundColor(.blue)
+                .padding(.top, 40)
             }
-        }
-        .fullScreenCover(isPresented: $showSignInOptions) {
-            SignInOptionsView()
+            .padding()
+            //.background(Color.white)
         }
     }
 }
 
-#Preview {
-    LoginSelectionView()
+struct SignInButton: View {
+    var label: String
+    var systemImage: String
+    var backgroundColor: Color
+
+    var body: some View {
+        Button(action: {
+            // サインイン処理をここに記述
+        }) {
+            HStack {
+                Image(systemName: systemImage)
+                Text(label)
+                    .fontWeight(.semibold)
+            }
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(backgroundColor)
+            .cornerRadius(10)
+        }
+        .padding(.horizontal)
+    }
 }
+
+#Preview {
+        SignInOptionsView()
+    }
+

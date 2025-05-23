@@ -27,8 +27,8 @@ struct TermsAgreementView: View {
                             .frame(width: 200, height: 200)
 
                         
-                        Text("君がみてる景色が、教科書だ。")
-                            .font(.title2)
+                        Text("君がみてる景色が、\n教科書だ。")
+                            .font(.title)
                             .multilineTextAlignment(.center)
 
                     }
