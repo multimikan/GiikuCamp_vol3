@@ -11,10 +11,9 @@ import YOLO
 struct SampleCameraView: View {
     var body: some View {
         YOLOCamera(
-            modelPathOrName: "yolo11n-seg",
-            task: .segment,
+            modelPathOrName: "yolo11n",
+            task: .detect,
             cameraPosition: .back
         )
-        .ignoresSafeArea()
     }
 }
