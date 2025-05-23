@@ -17,7 +17,7 @@ struct GiikuCamp_vol3App: App {
 
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            ContentView()
                 .onOpenURL { url in
                     // Google Sign-Inのリダイレクト処理
                     GIDSignIn.sharedInstance.handle(url)

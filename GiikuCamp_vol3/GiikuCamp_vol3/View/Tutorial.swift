@@ -18,7 +18,7 @@ import SwiftUI
 //    }
 //}
 
-struct PlantPromptView: View {
+struct TutrialView: View {
     var body: some View {
         ZStack {
             // 背景画像（暗くする）
@@ -73,7 +73,7 @@ struct PlantPromptView: View {
                     // 他の画面へ
                 }) {
                     Text("キャンセル")
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color(uiColor: .yellow ))
                         .underline()
                 }
 
@@ -84,7 +84,7 @@ struct PlantPromptView: View {
 }
 
 #Preview {
-    PlantPromptView()
+    TutrialView()
 }
 
 
