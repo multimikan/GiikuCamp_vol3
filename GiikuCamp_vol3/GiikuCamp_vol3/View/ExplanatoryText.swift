@@ -42,7 +42,7 @@ struct ExplanatoryView: View {
                         .frame(width: 24, height: 24)
                         .foregroundColor(isFavorite ? .red : .gray)
                         .scaleEffect(animateHeart ? 1.4 : 1.0)
-                } 
+                }
             }
             
             // 単元名

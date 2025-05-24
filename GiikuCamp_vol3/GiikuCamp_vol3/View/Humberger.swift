@@ -79,7 +79,7 @@ struct HamburgerMenuSampleView: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
-                .opacity(0.7)
+                .opacity(0.6)
                 .ignoresSafeArea()
                 .onTapGesture {
                     withAnimation {
