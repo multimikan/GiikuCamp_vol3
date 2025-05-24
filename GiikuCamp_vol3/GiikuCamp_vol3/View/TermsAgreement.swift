@@ -21,13 +21,31 @@ struct TermsAgreementView: View {
                     Spacer().frame(height: 1)
                     
                     VStack(spacing: 0){
-                        Image("Me")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
+                        LinearGradient(
+                            gradient: Gradient(stops: [
+                                .init(color: Color(hex: "#0066ff"), location: 0.0),
+                                .init(color: Color(hex: "#0066ff"), location: 0.4), // 青を70%まで
+                                .init(color: Color(hex: "#ffff00"), location: 1.0)  // 残りが黄
+                            ]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                        .mask(
+                            Image(systemName: "books.vertical")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        )
+                        .frame(width: 120, height: 120)
+                        .padding(24)
 
                         
-                        Text("君がみてる景色が、\n教科書だ。")
+                        Text("君がみてる景色が、")
+                            .font(.title)
+                            .bold()
+                            .multilineTextAlignment(.center)
+                            .padding(8)
+                        Text("教科書だ。")
+                            .bold()
                             .font(.title)
                             .multilineTextAlignment(.center)
 

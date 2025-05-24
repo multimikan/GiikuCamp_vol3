@@ -4,14 +4,13 @@ struct SettingsSheetView: View {
     @Binding var isSettingsPresented: Bool
 
     @State private var selectedLevel = "小学校"
-    @State private var selectedModel = "底"
+    @State private var selectedModel = "低"
     @State private var selectedLanguage = ""
     
     @State private var isEditingLanguage = false
     @State private var language: String = "日本語"
 
-    let levels = ["小学校", "中学校", "高校"]
-    let models = ["底", "中", "高"]
+    let models = ["低", "中", "高"]
 
     var body: some View {
         NavigationStack {
@@ -48,13 +47,6 @@ struct SettingsSheetView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
 
-                        SettingsBox(title: "学習レベル") {
-                            Picker("学習レベル", selection: $selectedLevel) {
-                                ForEach(["小学校", "中学校", "高校"], id: \.self) {
-                                    Text($0) }
-                            }
-                            .pickerStyle(.segmented)
-                        }
 
                         SettingsBox(title: "モデルの切り替え") {
                             Picker("モデル", selection: $selectedModel) {

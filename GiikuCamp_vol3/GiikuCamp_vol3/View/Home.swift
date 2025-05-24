@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct Home: View {
-    
     init() {
     @StateObject var cloudViewModel = CloudViewModel()
         
@@ -11,12 +10,11 @@ struct Home: View {
 }
     
     var body: some View {
-        CameraView()
+        // 直接HumburgerMenuSampleViewを表示
+        // CameraViewはすでにHumburgerMenuSampleView内に含まれている
+        HumburgerMenuSampleView()
     }
 }
-
-
-
 
 #Preview {
     Home()
