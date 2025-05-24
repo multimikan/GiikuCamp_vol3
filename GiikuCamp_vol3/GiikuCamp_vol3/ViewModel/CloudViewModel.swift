@@ -21,7 +21,7 @@ class CloudViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.data = Cloud(
                             DocumentID: document.documentID,
-                            isAgree: document.data()?["isAgree"] as? Bool ?? false,
+                            isAgree: document.data()?["isAgree"] as? Bool ?? true,
                             born: document.data()?["born"] as? Int ?? 0,
                             language: document.data()?["language"] as? String ?? "日本語",
                             favorite: document.data()?["favorite"] as? [String: [String: Bool]] ?? [:],
@@ -37,7 +37,7 @@ class CloudViewModel: ObservableObject {
                     // 新しいドキュメントを作成
                     let newData = Cloud(
                         DocumentID: currentUserID,
-                        isAgree: false,
+                        isAgree: true,
                         born: 2004,
                         language: "日本",
                         favorite: [
@@ -62,7 +62,7 @@ class CloudViewModel: ObservableObject {
                 // アプリ内で一時的に使用するデータを設定
                 DispatchQueue.main.async {
                     self.data = Cloud(
-                        isAgree: false,
+                        isAgree: true,
                         born: 0,
                         language: "日本語",
                         favorite: [:],

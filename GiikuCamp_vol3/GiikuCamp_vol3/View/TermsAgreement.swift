@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TermsAgreementView: View {
     var onAgree: () -> Void  // 続けるボタンを押したときの処理を外部に渡せるように
-    @State var showSheet = false
+    @State private var showBottomContent = false // 下部コンテンツの表示状態を管理
 
     var body: some View {
         ZStack {
@@ -59,7 +59,7 @@ struct TermsAgreementView: View {
                 Spacer().frame(height: 27)
                 
                 Button(action: {
-                    showSheet.toggle()
+                    onAgree()
                 }) {
                     Text("続ける")
                         .font(.headline)
@@ -83,14 +83,18 @@ struct TermsAgreementView: View {
                     
                 }
             }
-            .fullScreenCover(isPresented: $showSheet) {
-                SignInOptionsView()
-            }
+            .opacity(showBottomContent ? 1 : 0) // 表示状態に応じて透明度を変更
+            .offset(y: showBottomContent ? 0 : 20) // 表示状態に応じて位置を調整
+            .animation(.easeInOut(duration: 0.5), value: showBottomContent) // アニメーション設定
         }
         .background(Color(uiColor: .white))
-//        .opacity()// ← 背景色を設定（例：白）
         .ignoresSafeArea()       // ← 全画面に適用する場合
-        
+        .onAppear {
+            // 0.5秒後に下部コンテンツを表示
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                showBottomContent = true
+            }
+        }
     }
 }
 
