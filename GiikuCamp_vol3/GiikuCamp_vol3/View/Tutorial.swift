@@ -18,11 +18,13 @@ import SwiftUI
 //    }
 //}
 
-struct TutrialView: View {
+struct TutorialView: View {
+    var onDismiss: () -> Void // チュートリアル終了時のコールバック
+
     var body: some View {
         ZStack {
             // 背景画像（暗くする）
-            Image("yourBackgroundImage")
+            Image("yourBackgroundImage") // TODO: 実際の背景画像名に置き換えてください
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -53,7 +55,7 @@ struct TutrialView: View {
 
                 // 「試す」ボタン（グラデーション & 丸み）
                 Button(action: {
-                    // アクション
+                    onDismiss() // 試すボタンでコールバックを呼び出し
                 }) {
                     Text("試す")
                         .foregroundColor(.white)
@@ -70,10 +72,10 @@ struct TutrialView: View {
 
                 // 下部リンク
                 Button(action: {
-                    // 他の画面へ
+                    onDismiss() // キャンセルボタンでコールバックを呼び出し
                 }) {
                     Text("キャンセル")
-                        .foregroundColor(Color(uiColor: .yellow ))
+                        .foregroundColor(Color(uiColor: .yellow )) // Color(hex: "#FFFF00") の方が統一感が出るかも
                         .underline()
                 }
 
@@ -84,7 +86,8 @@ struct TutrialView: View {
 }
 
 #Preview {
-    TutrialView()
+    // Previewで動作させるためにダミーのコールバックを渡す
+    TutorialView(onDismiss: { print("Tutorial dismissed from Preview") })
 }
 
 

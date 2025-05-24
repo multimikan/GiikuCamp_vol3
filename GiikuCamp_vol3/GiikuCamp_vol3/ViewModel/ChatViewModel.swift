@@ -1,165 +1,127 @@
 import Foundation
 import SwiftUI
+import Combine
 
 class ChatViewModel: ObservableObject {
-    @Published var messages: [ChatMessage] = []
+    // MARK: - Environment Objects
+    @EnvironmentObject var cloudViewModel: CloudViewModel // CloudViewModelをEnvironmentObjectとして受け取る
+
+    // MARK: - Published Properties for UI
+    @Published var messages: [ChatMessage] = [
+        // Preview用のダミーメッセージ
+        ChatMessage(role: "user", content: "こんにちは！調子はどうですか？", createdAt: Calendar.current.date(byAdding: .minute, value: -5, to: Date())!),
+        ChatMessage(role: "assistant", content: "こんにちは！私は元気です。何かお手伝いできることはありますか？", createdAt: Calendar.current.date(byAdding: .minute, value: -4, to: Date())!)
+    ]
     @Published var inputText: String = ""
     @Published var isLoading: Bool = false
-    
-    private let apiClient: GPTAPIClient
-    private let cloudViewModel: CloudViewModel
-    
-    init(apiClient: GPTAPIClient = GPTAPIClient(apiKey: MyEnvironment.openAIAPIKey),
-         cloudViewModel: CloudViewModel) {
-        self.apiClient = apiClient
-        self.cloudViewModel = cloudViewModel
-        
-        // 初期化時にシステムプロンプトを追加
-        addDefaultSystemPrompt()
-        
-        // 初期化時にFirestoreからデータを取得
-        Task {
-            await refreshUserData()
-        }
+    @Published var isUserProfileSheetPresented: Bool = false
+
+    // UserProfileView で使用するプロパティ
+    @Published var userProfileLanguage: String = ""
+    @Published var userProfileAge: String = ""
+    @Published var userProfileEmail: String = ""
+
+    private var cancellables = Set<AnyCancellable>()
+
+    // MARK: - Initialization
+    init() {
+        // CloudViewModelが注入された後に初期設定を行う場合は、onAppearや別のメソッドで対応
+        // ここでは、userProfileの初期値をonAppearで設定することを想定
+        print("ChatViewModel initialized")
     }
-    
-    private func addDefaultSystemPrompt() {
-        // システムプロンプトをここに設定
-        let systemPrompt = createSystemPrompt()
-        
-        let systemMessage = ChatMessage(
-            id: UUID().uuidString,
-            role: "system",
-            content: systemPrompt,
-            createdAt: Date()
-        )
-        
-        // システムメッセージをメッセージリストに追加（UIには表示されない）
-        messages.append(systemMessage)
+
+    // MARK: - Intents / Actions
+    func onChatViewAppear() {
+        print("ChatView appeared")
+        // cloudViewModelが利用可能になった時点でユーザープロファイル情報をロード
+        // cloudViewModelのプロパティに直接アクセスするのではなく、
+        // cloudViewModelが準備完了であることを確認してからアクセスするのが安全
+        // 例: cloudViewModelの初期化完了を待つか、オプショナルバインディングを使う
+        // DispatchQueue.main.async { // cloudViewModelの準備を待つために少し遅延させる（より良い方法を検討）
+        //     self.loadUserProfileFromCloudViewModel()
+        // }
+        // TODO: 実際のメッセージ読み込み処理など
     }
-    
-    private func createSystemPrompt() -> String {
-        let age = cloudViewModel.data.born
-        let language = cloudViewModel.data.language
-        
-        var systemPrompt = "提示したオブジェクトについて、そのオブジェクトが開発された際に用いられたパーツごとに適当な教科の学習単元を\(age)歳までの学校指導要領内でユーザーに説明してください。回答時は、ユーザーが13歳未満の際は漢字を使わずにフランクな口調で回答をお願いします。回答時は以下のJSONフォーマットに必ず従うこと(バックスラッシュは無視)。また、\(language)語で回答すること。\n\n"
-        systemPrompt += "[{\"subject\":\"教科の名前\",\"object\":\"オブジェクトまたはパーツの名前\",\"curriculum\":\"単元の名前\",\"description\":\"簡単な説明\",\"deep_description\":\"詳細な説明\"}]"
-        
-        return systemPrompt
+
+    func loadUserProfileFromCloudViewModel() {
+        // 注意: このメソッドはcloudViewModelが利用可能な状態で呼び出す必要がある
+        // self.userProfileLanguage = cloudViewModel.data.language
+        // self.userProfileAge = String(cloudViewModel.data.born)
+        // self.userProfileEmail = cloudViewModel.data.email ?? ""
+        // print("User profile loaded into ChatViewModel: Lang=\(self.userProfileLanguage)")
+        // 上記はCloudViewModelの準備ができていないとクラッシュする可能性があるため、
+        // 呼び出し側でcloudViewModelが利用可能であることを保証するか、
+        // cloudViewModelのデータが更新されたことを検知して反映する仕組み（例: sink）が必要。
+        // 簡単な対処としては、CloudViewModelのdataを監視し、変更があったらこれらの値を更新する。
+        // もしくは、ChatViewのonAppearで直接cloudViewModelの値を参照し、
+        // UserProfileViewに渡す際にChatViewModelのプロパティにコピーする。
+        // ここでは一旦、UserProfileView表示時に値がセットされると仮定。
     }
-    
-    // JSONをSwiftの二次元配列（[[String: String]]）に変換する関数
-    func parseJSONToContentArray(_ jsonString: String) -> [[String: String]] {
-        do {
-            // 入力されたJSONがそのままパースできない場合は、有効なJSON部分を検出して抽出
-            let validJSONString = extractValidJSON(from: jsonString)
-            
-            guard let data = validJSONString.data(using: .utf8) else {
-                print("JSON文字列をデータに変換できませんでした")
-                return [["error": "JSONパースエラー"]]
-            }
-            
-            // JSONをパース
-            if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
-                // 文字列型のキーと値を持つ辞書の配列に変換
-                return jsonArray.map { dict -> [String: String] in
-                    var stringDict: [String: String] = [:]
-                    for (key, value) in dict {
-                        stringDict[key] = String(describing: value)
-                    }
-                    return stringDict
-                }
-            } else {
-                print("JSONを配列として解析できませんでした")
-                return [["error": "JSONパースエラー: 二次元配列ではありません"]]
-            }
-        } catch {
-            print("JSONパースエラー: \(error.localizedDescription)")
-            return [["error": "JSONパースエラー: \(error.localizedDescription)"]]
-        }
-    }
-    
-    // 文字列から有効なJSON部分を抽出する関数
-    private func extractValidJSON(from text: String) -> String {
-        // 文字列内の最初の"["と最後の"]"の間の部分を探す
-        guard let startIndex = text.firstIndex(of: "["),
-              let endIndex = text.lastIndex(of: "]") else {
-            return "[]" // 有効なJSON配列が見つからない場合は空配列を返す
-        }
-        
-        let jsonPart = text[startIndex...endIndex]
-        return String(jsonPart)
-    }
-    
-    // システムプロンプトを更新
-    func updateSystemPrompt() {
-        if let index = messages.firstIndex(where: { $0.role == "system" }) {
-            let systemPrompt = createSystemPrompt()
-            
-            let newSystemMessage = ChatMessage(
-                id: UUID().uuidString,
-                role: "system",
-                content: systemPrompt,
-                createdAt: Date()
-            )
-            
-            // 既存のシステムメッセージを更新
-            messages[index] = newSystemMessage
-        }
-    }
-    
-    // Firestoreからデータを最新化
-    func refreshUserData() async {
-        // CloudViewModelのデータを更新
-        await cloudViewModel.fetchCloud()
-        
-        // システムプロンプトを更新
-        updateSystemPrompt()
-    }
-    
+
     func sendMessage() async {
         guard !inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        let userMessage = ChatMessage(role: "user", content: inputText)
         
-        let userMessage = ChatMessage(id: UUID().uuidString, role: "user", content: inputText, createdAt: Date())
-        
-        await MainActor.run {
-            messages.append(userMessage)
-            isLoading = true
-            inputText = ""
+        DispatchQueue.main.async {
+            self.messages.append(userMessage)
+            let messageToSend = self.inputText
+            self.inputText = "" 
+            self.isLoading = true
+            print("Sending message: \(messageToSend)")
         }
-        
+
+        // --- API呼び出しのダミー ---
         do {
-            // Firestoreからの最新データを取得
-            await refreshUserData()
-            
-            // APIメッセージを作成（content部分はそのままの文字列）
-            let apiMessages = messages.map { Message(role: $0.role, content: $0.content) }
-            let response = try await apiClient.sendMessage(apiMessages)
-            
-            // 応答JSONを解析して二次元配列に変換
-            let parsedContent = response
-            
-            let assistantMessage = ChatMessage(id: UUID().uuidString, role: "assistant", content: parsedContent, createdAt: Date())
-            
-            await MainActor.run {
-                messages.append(assistantMessage)
-                isLoading = false
+            try await Task.sleep(nanoseconds: 1_000_000_000) // 1秒待機
+            DispatchQueue.main.async {
+                self.messages.append(ChatMessage(role: "assistant", content: "AIからの返答です: \(userMessage.content)"))
+                self.isLoading = false
             }
         } catch {
-            print("Error: \(error.localizedDescription)")
-            
-            await MainActor.run {
-                let errorMessage = ChatMessage(id: UUID().uuidString, role: "assistant", content: "エラーが発生しました: \(error.localizedDescription)", createdAt: Date())
-                messages.append(errorMessage)
-                isLoading = false
+            DispatchQueue.main.async {
+                self.isLoading = false
+                // TODO: エラーハンドリング
+                print("Error during dummy API call: \(error)")
             }
         }
+        // --- API呼び出しのダミーここまで ---
+    }
+
+    func saveUserProfile() {
+        // cloudViewModel.data.language = userProfileLanguage
+        // if let age = Int(userProfileAge) {
+        //     cloudViewModel.data.born = age
+        // }
+        // cloudViewModel.data.email = userProfileEmail.isEmpty ? nil : userProfileEmail
+        // Task {
+        //     await cloudViewModel.saveData()
+        // }
+        print("User profile save requested: Lang=\(userProfileLanguage), Age=\(userProfileAge), Email=\(userProfileEmail)")
+        // isUserProfileSheetPresented = false // 保存後にシートを閉じる場合
+        // TODO: 実際にCloudViewModel経由でデータを保存する処理
+    }
+
+    func resetProfileChanges() {
+        // UserProfileViewを開いたときのCloudViewModelのデータでリセット
+        // loadUserProfileFromCloudViewModel() // 再度CloudViewModelから読み込む
+        print("User profile changes reset requested.")
+        // TODO: 実際にCloudViewModelから値を再読み込みする処理
+    }
+    
+    func showUserProfile() {
+        // プロフィールシート表示時に現在のユーザー情報をViewModelにコピー
+        // self.userProfileLanguage = cloudViewModel.data.language
+        // self.userProfileAge = String(cloudViewModel.data.born)
+        // self.userProfileEmail = cloudViewModel.data.email ?? ""
+        // print("Showing user profile. Initial values: Lang=\(userProfileLanguage)")
+        isUserProfileSheetPresented = true
     }
 }
 
-struct ChatMessage: Identifiable {
-    let id: String
-    let role: String
-    let content: String
-    let createdAt: Date
-} 
+// ChatMessage 構造体の定義をここから削除
+// struct ChatMessage: Identifiable {
+//     let id: String
+//     let role: String
+//     let content: String
+//     let createdAt: Date
+// } 
