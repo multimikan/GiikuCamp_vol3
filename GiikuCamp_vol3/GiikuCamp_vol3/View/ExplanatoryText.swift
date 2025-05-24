@@ -1,99 +1,103 @@
 import SwiftUI
 
 struct ExplanatoryView: View {
-    @ObservedObject var viewModel: ExplanatoryViewModel
+    var subject: String = "物理"
+    var level: String = "高校"
+    var unit: String = "慣性の法則"
+    var description: String = "慣性の法則は、物体が外から力を受けない限り、その運動状態を保ち続けるという法則です。"
     
+    @State private var isFavorite = false
     @State private var animateHeart = false
+    @State private var isSaved = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             // タイトル
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(viewModel.subject)
+                    Text(subject)
                         .font(.title)
                         .fontWeight(.bold)
-                    Text(viewModel.level)
+                    Text(level)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
+                
                 Spacer()
+                
+                // お気に入り
                 Button(action: {
-                    viewModel.toggleFavorite()
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                        isFavorite.toggle()
                         animateHeart = true
                     }
+
+                    // アニメーション終了後に元に戻す
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         animateHeart = false
                     }
                 }) {
-                    Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(viewModel.isFavorite ? .red : .gray)
+                        .foregroundColor(isFavorite ? .red : .gray)
                         .scaleEffect(animateHeart ? 1.4 : 1.0)
                 }
             }
             
-            Text("「\(viewModel.unit)」")
+            // 単元名
+            Text("「\(unit)」")
                 .font(.title2)
                 .fontWeight(.semibold)
             
-            Text(viewModel.description)
+            // 説明文
+            Text(description)
                 .font(.body)
                 .lineSpacing(4)
             
-            if let imageName = viewModel.imageName, !imageName.isEmpty {
-                Image(systemName: "photo")
+            ZStack {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.2))
+                    .frame(height: 150)
+                    .cornerRadius(12)
+                
+                Image(systemName: "book")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 150)
+                    .frame(height: 100)
                     .foregroundColor(.gray)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(12)
-            } else {
-                ZStack {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.2))
-                        .frame(height: 150)
-                        .cornerRadius(12)
-                    Image(systemName: "book")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 100)
-                        .foregroundColor(.gray)
-                }
             }
             
             Spacer()
             
+            // 「後で見る」ボタン
             HStack{
                 Spacer()
-                Button(action: {
-                    viewModel.detailedExplanationRequested()
-                }) {
-                    HStack {
-                        Label("AIに詳しく聞いてみる", systemImage: "wand.and.sparkles")
-                            .padding(.horizontal,48)
-                    }
-                    .padding(.vertical, 14)
-                    .padding(.horizontal, 5)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color(hex: "#0066FF"),
-                                Color(hex: "#ffff00")
-                            ]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .foregroundColor(.white)
-                    .cornerRadius(15)
+            Button(action: {
+                isSaved.toggle()
+            }) {
+                HStack {
+                    Label("AIに詳しく聞いてみる", systemImage: "wand.and.sparkles")
+                        .padding(.horizontal,48)
                 }
-                Spacer()
+                //.frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+                .padding(.horizontal, 5)
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color(hex: "#0066FF"),
+                            Color(hex: "#ffff00")
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                .foregroundColor(.white)
+                .cornerRadius(15)
             }
+            Spacer()
+        }
         }
         .padding(32)
     }
@@ -101,31 +105,37 @@ struct ExplanatoryView: View {
 
 struct ExplanatoryTextView: View {
     @State private var isShowingModal = false
-    let exampleViewModel = ExplanatoryViewModel(
-        subject: "物理", 
-        level: "高校", 
-        unit: "慣性の法則", 
-        description: "慣性の法則は、物体が外から力を受けない限り、その運動状態を保ち続けるという法則です。",
-        isInitialFavorite: true
-    )
 
     var body: some View {
         Button("説明を表示") {
             isShowingModal = true
         }
         .sheet(isPresented: $isShowingModal) {
-            ExplanatoryView(viewModel: exampleViewModel)
+            ExplanatoryView()
         }
     }
 }
 
+
+
 #Preview {
-    ExplanatoryView(viewModel: ExplanatoryViewModel(
-        subject: "化学", 
-        level: "高校", 
-        unit: "酸化還元反応", 
-        description: "酸化還元反応は、物質間で電子の授受が行われる化学反応です。酸化される物質は電子を失い、還元される物質は電子を得ます。",
-        imageName: "testImage",
-        isInitialFavorite: false
-    ))
+    PreviewWrapper()
+}
+
+private struct PreviewWrapper: View {
+    @State var isShowingModal: Bool = false
+    
+    var body: some View {
+        VStack{
+        VStack{
+            Button("画像"){
+                isShowingModal = true
+            }
+        }
+    }
+        .halfModal(isShow: $isShowingModal) {
+            ExplanatoryView()
+        } onEnd: {
+        }
+    }
 }

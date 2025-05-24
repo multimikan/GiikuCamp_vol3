@@ -1,5 +1,5 @@
 //
-//  SignInOption.swift
+//  SignUp.swift
 //  GiikuCamp_vol3
 //
 //  Created by SLJ-156 on 2025/05/20.
@@ -9,56 +9,67 @@ import SwiftUI
 
 struct SignInOptionsView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var viewModel: AuthViewModel
+    @StateObject private var viewModel = AuthViewModel()
+    @ObservedObject private var cloudViewModel = CloudViewModel()
     
     var body: some View {
-        ZStack {
-            // 背景グラデーション
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(hex: "#FFFF00").opacity(0.2),
-                    Color(hex: "#0066FF").opacity(0.2)
-                ]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea() // 全画面に拡張
-            
-            VStack(spacing: 14) {
-                Text("サインイン方法を選択")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                    .padding()
+        if viewModel.isAuthenticated{
+            ZStack {
+                // 背景グラデーション
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(hex: "#FFFF00").opacity(0.2),
+                        Color(hex: "#0066FF").opacity(0.2)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea() // 全画面に拡張
                 
-                SignInButton(label: "Appleでサインイン", systemImage: "applelogo", backgroundColor: .black, closure: {
-                    // Task { await viewModel.signInWithApple() }
-                })
-                SignInButton(label: "Googleでサインイン", systemImage: "globe", backgroundColor: .red, closure:{
-                    Task {
-                        await viewModel.signInWithGoogle()
+                VStack(spacing: 14) {
+                    
+                    Text("サインイン方法を選択")
+                        .font(.title)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    
+                    SignInButton(label: "Appleでサインイン", systemImage: "applelogo", backgroundColor: .black)
+                    SignInButton(label: "Googleでサインイン", systemImage: "globe", backgroundColor: .red, closure:{
+                        Task {
+                            await viewModel.signInWithGoogle()
+                        }})
+                    SignInButton(label: "Yahoo! JAPAN IDでサインイン", systemImage: "person.circle", backgroundColor: .purple)
+                    
+                    Button("キャンセル") {
+                        dismiss()
                     }
-                })
-                SignInButton(label: "Yahoo! JAPAN IDでサインイン", systemImage: "person.circle", backgroundColor: .purple, closure: {
-                    // Task { await viewModel.signInWithYahoo() }
-                })
-                
-                Button("キャンセル") {
-                    dismiss()
+                    .foregroundColor(.blue)
+                    .padding(.top, 40)
                 }
-                .foregroundColor(.blue)
-                .padding(.top, 40)
+                .padding()
+                
+                // ローディングインジケーター
+                if viewModel.isLoading {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                    
+                    ProgressView()
+                        .scaleEffect(2)
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                }
+                
             }
-            .padding()
-            
-            // ローディングインジケーター
-            if viewModel.isLoading {
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
-                ProgressView()
-                    .scaleEffect(2)
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+            .onAppear {
+                // 既存のユーザーがいるか確認
+                if viewModel.getCurrentUser() != nil {
+                    viewModel.isAuthenticated = true
+                }
             }
         }
+        else{
+            SampleCameraView()
+        }
+        
     }
 }
 
@@ -88,7 +99,6 @@ struct SignInButton: View {
 }
 
 #Preview {
-    SignInOptionsView()
-        .environmentObject(AuthViewModel())
-}
+        SignInOptionsView()
+    }
 
