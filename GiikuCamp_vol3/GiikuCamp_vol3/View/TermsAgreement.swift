@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct TermsAgreementView: View {
-    var onAgree: () -> Void  // 続けるボタンを押したときの処理を外部に渡せるように
-    @State var showSheet = false
+    var onAgree: () -> Void  // 同意ボタンを押したときの処理
 
     var body: some View {
         ZStack {
             VStack(spacing: 30) {
                 Spacer().frame(height: 220)
 
-                // ロゴと説明など中央に配置
                 VStack(spacing:10) {
                     Spacer().frame(height: 1)
                     
@@ -26,18 +24,14 @@ struct TermsAgreementView: View {
                             .scaledToFit()
                             .frame(width: 200, height: 200)
 
-                        
                         Text("君がみてる景色が、\n教科書だ。")
                             .font(.title)
                             .multilineTextAlignment(.center)
-
                     }
                 }
-
                 Spacer()
             }
 
-            // 👇 続けるボタンを下部に固定
             VStack {
                 Spacer()
                 VStack(spacing: 12) {
@@ -59,7 +53,7 @@ struct TermsAgreementView: View {
                 Spacer().frame(height: 27)
                 
                 Button(action: {
-                    showSheet=true
+                    onAgree()
                 }) {
                     Text("続ける")
                         .font(.headline)
@@ -80,42 +74,14 @@ struct TermsAgreementView: View {
                         .cornerRadius(25)
                         .padding(.horizontal)
                         .padding(.bottom, 40)
-                    
                 }
-            }
-            .fullScreenCover(isPresented: $showSheet) {
-                SignInOptionsView()
             }
         }
         .background(Color(uiColor: .white))
-//        .opacity()// ← 背景色を設定（例：白）
-        .ignoresSafeArea()       // ← 全画面に適用する場合
-        
+        .ignoresSafeArea()
     }
 }
 
 #Preview {
-    TermsAgreementView(onAgree: {})
-}
-
-
-
-extension Color {
-    init(hex: String) {
-        let hex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-        let scanner = Scanner(string: hex)
-        
-        if hex.hasPrefix("#") {
-            scanner.currentIndex = hex.index(after: hex.startIndex)
-        }
-
-        var rgbValue: UInt64 = 0
-        scanner.scanHexInt64(&rgbValue)
-
-        let red = Double((rgbValue & 0xFF0000) >> 16) / 255.0
-        let green = Double((rgbValue & 0x00FF00) >> 8) / 255.0
-        let blue = Double(rgbValue & 0x0000FF) / 255.0
-
-        self.init(red: red, green: green, blue: blue)
-    }
+    TermsAgreementView(onAgree: { print("Agreed from Preview") })
 }
