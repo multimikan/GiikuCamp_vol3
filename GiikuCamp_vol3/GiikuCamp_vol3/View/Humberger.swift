@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HamburgerMenuSampleView: View {
+struct HumburgerMenuSampleView: View {
     @State private var isMenuOpen = false
     @State private var selectedScreen = "Home"
     @State private var isSettingsPresented = false
@@ -49,11 +49,9 @@ struct HamburgerMenuSampleView: View {
         ZStack {
             NavigationStack {
                 VStack {
-                    Text("\(selectedScreen)画面")
-                        .font(.largeTitle)
-                        .padding()
+                    CameraView()
+                        .ignoresSafeArea()
                 }
-                .navigationTitle(selectedScreen)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
@@ -61,7 +59,20 @@ struct HamburgerMenuSampleView: View {
                                 isMenuOpen.toggle()
                             }
                         } label: {
-                            Image(systemName: "line.horizontal.3")
+                            ZStack {
+                                // 背景
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(Color.white)
+                                    .shadow(radius: 5)
+                                    .frame(width: 64, height: 64)
+                                
+                                // アイコン
+                                Image(systemName: "line.horizontal.3")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(.black)
+                            }
                         }
                     }
                 }
@@ -282,5 +293,5 @@ struct CheckBoxToggleStyle: ToggleStyle {
 
 
 #Preview {
-    HamburgerMenuSampleView()
+    HumburgerMenuSampleView()
 }
