@@ -13,6 +13,8 @@ struct SettingsSheetView: View {
     let levels = ["小学校", "中学校", "高校"]
     let models = ["底", "中", "高"]
 
+    @State private var cloudViewModel = CloudViewModel()
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -44,7 +46,7 @@ struct SettingsSheetView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         SettingsBox(title: "アカウント情報") {
-                            Text("ユーザー名: sample_user")
+                            Text("ユーザー名: \(cloudViewModel.data.email ?? "未設定")")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
 
@@ -58,7 +60,7 @@ struct SettingsSheetView: View {
 
                         SettingsBox(title: "モデルの切り替え") {
                             Picker("モデル", selection: $selectedModel) {
-                                ForEach(["底", "中", "高"], id: \.self) {
+                                ForEach(["低", "中", "高"], id: \.self) {
                                     Text($0) }
                             }
                             .pickerStyle(.segmented)
@@ -110,6 +112,12 @@ struct SettingsSheetView: View {
             }
         }
         .navigationBarHidden(true)
+        .onAppear {
+            // 画面表示時にFirestoreからデータを更新
+            Task {
+                await cloudViewModel.fetchCloud()
+            }
+        }
     }
 }
 
