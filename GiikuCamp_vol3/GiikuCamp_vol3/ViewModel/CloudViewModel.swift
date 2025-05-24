@@ -8,9 +8,6 @@ class CloudViewModel: ObservableObject {
     
     init() {
         self.data = Cloud(isAgree: false, born: 0, language: "日本語", favorite: [:], email: nil)
-        Task {
-            await fetchCloud()
-        }
     }
 
     func fetchCloud() async {

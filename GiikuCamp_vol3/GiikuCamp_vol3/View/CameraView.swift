@@ -8,12 +8,13 @@
 import SwiftUI
 import YOLO
 
-struct SampleCameraView: View {
+struct CameraView: View {
     var body: some View {
         YOLOCamera(
             modelPathOrName: "yolo11n",
             task: .detect,
             cameraPosition: .back
         )
+        .ignoresSafeArea()
     }
 }

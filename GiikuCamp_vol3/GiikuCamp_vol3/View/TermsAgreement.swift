@@ -59,7 +59,7 @@ struct TermsAgreementView: View {
                 Spacer().frame(height: 27)
                 
                 Button(action: {
-                    showSheet=true
+                    showSheet.toggle()
                 }) {
                     Text("続ける")
                         .font(.headline)

@@ -12,11 +12,21 @@ struct ContentView: View {
     @StateObject private var cloudViewModel = CloudViewModel()
     
     var body: some View {
-        if cloudViewModel.data.isAgree {
-            SampleCameraView()
-        }
-        else{
-            TermsAgreementView(onAgree: {SignInOptionsView()})
+        NavigationView{
+            if !cloudViewModel.data.isAgree {
+                TermsAgreementView(onAgree:{})
+            }
+            else if !authViewModel.isAuthenticated{
+                SignInOptionsView()
+            }
+            else{
+                Home()
+            }
+        }.onAppear {
+            // 既存のユーザーがいるか確認
+            if authViewModel.getCurrentUser() != nil {
+                authViewModel.isAuthenticated = true
+            }
         }
     }
 }

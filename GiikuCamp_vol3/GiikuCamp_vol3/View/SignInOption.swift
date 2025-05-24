@@ -10,11 +10,10 @@ import SwiftUI
 struct SignInOptionsView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel = AuthViewModel()
-    @ObservedObject private var cloudViewModel = CloudViewModel()
+    @State private var showView:Bool = true
     
     var body: some View {
-        if viewModel.isAuthenticated{
-            ZStack {
+        if !viewModel.isAuthenticated {
                 // 背景グラデーション
                 LinearGradient(
                     gradient: Gradient(colors: [
@@ -57,19 +56,13 @@ struct SignInOptionsView: View {
                         .scaleEffect(2)
                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 }
-                
+            if !viewModel.isAuthenticated {
+                Home()
             }
-            .onAppear {
-                // 既存のユーザーがいるか確認
-                if viewModel.getCurrentUser() != nil {
-                    viewModel.isAuthenticated = true
-                }
             }
-        }
         else{
-            SampleCameraView()
+            Home()
         }
-        
     }
 }
 
