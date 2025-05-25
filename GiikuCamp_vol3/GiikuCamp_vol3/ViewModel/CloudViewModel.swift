@@ -41,9 +41,9 @@ class CloudViewModel: ObservableObject {
                         born: 2004,
                         language: "日本",
                         favorite: [
-                            "小学": ["算数": true, "理科": true],
-                            "中学": ["数学": true, "理科": true],
-                            "高校": ["数学123": true, "数学ABC": true, "化学": true, "物理": true, "生物": true]
+                            "小学校": ["算数": true, "理科": true],
+                            "中学校": ["数学": true, "理科": true],
+                            "高校": ["数学123": true, "数学ABC": true, "化学": true, "物理": true]
                         ],
                         email: email
                     )
