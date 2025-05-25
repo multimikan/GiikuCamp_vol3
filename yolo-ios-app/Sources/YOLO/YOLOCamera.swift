@@ -21,25 +21,30 @@ public struct YOLOCamera: View {
   public let modelPathOrName: String
   public let task: YOLOTask
   public let cameraPosition: AVCaptureDevice.Position
+  public let onObjectTapped: (([String: String]) -> Void)?
 
   public init(
     modelPathOrName: String,
     task: YOLOTask = .detect,
-    cameraPosition: AVCaptureDevice.Position = .back
+    cameraPosition: AVCaptureDevice.Position = .back,
+    onObjectTapped: (([String: String]) -> Void)? = nil
   ) {
     self.modelPathOrName = modelPathOrName
     self.task = task
     self.cameraPosition = cameraPosition
+    self.onObjectTapped = onObjectTapped
   }
 
   public var body: some View {
     YOLOViewRepresentable(
       modelPathOrName: modelPathOrName,
       task: task,
-      cameraPosition: cameraPosition
-    ) { result in
-      self.yoloResult = result
-    }
+      cameraPosition: cameraPosition,
+      onDetection: { result in
+        self.yoloResult = result
+      },
+      onObjectTapped: self.onObjectTapped
+    )
   }
 }
 
@@ -48,6 +53,7 @@ struct YOLOViewRepresentable: UIViewRepresentable {
   let task: YOLOTask
   let cameraPosition: AVCaptureDevice.Position
   let onDetection: ((YOLOResult) -> Void)?
+  let onObjectTapped: (([String: String]) -> Void)?
 
   func makeUIView(context: Context) -> YOLOView {
     let yoloView = YOLOView(
@@ -60,5 +66,6 @@ struct YOLOViewRepresentable: UIViewRepresentable {
 
   func updateUIView(_ uiView: YOLOView, context: Context) {
     uiView.onDetection = onDetection
+    uiView.onObjectTapped = onObjectTapped
   }
 }

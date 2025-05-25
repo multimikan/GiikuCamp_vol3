@@ -50,7 +50,7 @@ struct SettingsSheetView: View {
 
                         SettingsBox(title: "モデルの切り替え") {
                             Picker("モデル", selection: $selectedModel) {
-                                ForEach(["底", "中", "高"], id: \.self) {
+                                ForEach(["低", "中", "高"], id: \.self) {
                                     Text($0) }
                             }
                             .pickerStyle(.segmented)
