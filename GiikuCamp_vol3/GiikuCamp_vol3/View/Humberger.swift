@@ -7,6 +7,7 @@ struct HumburgerMenuSampleView: View {
     @State private var isMenuOpen = false
     @State private var selectedScreen = "Home"
     @State private var isSettingsPresented = false
+
     
     // 学校区分のキー (CloudViewModelと一致させる)
     private let schoolKeys = ["小学校", "中学校", "高校"]
@@ -135,7 +136,11 @@ struct HumburgerMenuSampleView: View {
                             .padding(.vertical, 20)
                             
                             //履歴
-                            NavigationLink(destination: ChatView().environmentObject(chatViewModel).environmentObject(authViewModel)){
+                            NavigationLink(destination:
+                                            HistoryView()
+                                .navigationTitle("履歴")
+                                .navigationBarTitleDisplayMode(.large)
+                            ){
                                 Label("履歴",systemImage: "clock")
                                     .padding(.vertical, 20)
                             }

@@ -10,9 +10,11 @@ struct Home: View {
 }
     
     var body: some View {
-        // 直接HumburgerMenuSampleViewを表示
-        // CameraViewはすでにHumburgerMenuSampleView内に含まれている
-        HumburgerMenuSampleView()
+        NavigationView{
+            // 直接HumburgerMenuSampleViewを表示
+            // CameraViewはすでにHumburgerMenuSampleView内に含まれている
+            HumburgerMenuSampleView()
+        }
     }
 }
 

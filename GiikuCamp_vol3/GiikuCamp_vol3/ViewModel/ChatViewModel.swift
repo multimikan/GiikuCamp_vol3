@@ -51,23 +51,23 @@ class ChatViewModel: ObservableObject {
         説明は、日本の\(age)歳の子どもが理解できるように、\(language)でお願いします。
         その際、\(objectName)に関連する学校の教科と学習単元（もしあれば）を挙げ、簡単な説明と、少し詳しい説明を加えてください。
         回答は算数・数学が一番好ましいです。
+        
+        さらに、各説明セット（特に"curriculum"や"description"の内容）を視覚的に補足するような、著作権に配慮された**公開されている画像**のURLを一つ提案してください。画像が見つからない場合は null または空文字列としてください。
+        
         回答は必ず以下のJSON形式に従ってください。
         バックスラッシュはエスケープせず、そのままJSON文字列として出力してください。
 
         [
           {
-            "subject": "関連する教科  名 (例: 理科, 算数など)",
+            "subject": "関連する教科名 (例: 理科, 算数など)",
             "object": "(\(language)語に変換した)\(objectName) (または関連する具体的なトピックやパーツ名)",
             "curriculum": "関連する学習単元名 (例: てこの原理, 二次関数など)",
             "description": "子ども向けの簡単な説明",
-            "deep_description": "もう少し詳しく、興味を引くような説明"
+            "deep_description": "もう少し詳しく、興味を引くような説明",
+            "image_url": "提案された画像のURL (存在しない場合はnullまたは空文字列)"
           }
         ]
         """
-        // もし複数の教科や単元をリストで返してほしい場合は、プロンプトでそのように指示し、
-        // JSON構造の例も配列のままで良いことを示す。
-        // 今回は ExplanatoryView が単一の辞書を期待しているので、上記で最初の要素を取る前提。
-
         return systemPrompt
     }
     
@@ -160,38 +160,53 @@ class ChatViewModel: ObservableObject {
             isLoading = true
         }
         
-        var result: [[String: String]]? = nil
+        var parsedResult: [[String: String]]? = nil // パース結果を保持する変数名を変更
+        var rawResponseText: String = "" // 生のレスポンステキストを保持する変数
         
         do {
-            // Firestoreからの最新データを取得（年齢や言語設定のため）
             await refreshUserData()
-            
-            // 物体名を使ってシステムプロンプトを生成
             let specificSystemPrompt = createSystemPrompt(objectName: objectName)
-            
-            let apiMessages = [
-                Message(role: "system", content: specificSystemPrompt)
-            ]
+            let apiMessages = [Message(role: "system", content: specificSystemPrompt)]
             
             print("[ChatViewModel] Sending prompt for object: \(objectName)")
             print("[ChatViewModel] System prompt: \(specificSystemPrompt)")
 
-            let responseText = try await apiClient.sendMessage(apiMessages)
-            print("[ChatViewModel] Raw API Response for \(objectName): >>>\(responseText)<<<") // ★デバッグログ追加
+            rawResponseText = try await apiClient.sendMessage(apiMessages)
+            print("[ChatViewModel] Raw API Response for \(objectName): >>>\(rawResponseText)<<<")
             
-            result = parseJSONToContentArray(responseText)
-            print("[ChatViewModel] Parsed Result for \(objectName): \(String(describing: result))") // ★デバッグログ追加
+            parsedResult = parseJSONToContentArray(rawResponseText)
+            print("[ChatViewModel] Parsed Result for \(objectName): \(String(describing: parsedResult))")
+            
+            // FirestoreにGPT応答を保存
+            // 非同期で実行し、この関数の処理をブロックしない
+            Task {
+                await cloudViewModel.saveGPTResponse(
+                    objectName: objectName, 
+                    responseText: rawResponseText, 
+                    parsedExplanations: parsedResult
+                )
+            }
             
         } catch {
             print("[ChatViewModel] Error processing object name: \(error.localizedDescription)")
-            result = [["error": "APIエラー: \(error.localizedDescription)"]]
+            rawResponseText = "Error: \(error.localizedDescription)" // エラー時もテキストを記録
+            parsedResult = [["error": "APIエラー: \(error.localizedDescription)"]]
+            // エラー発生時もログを保存するかは要件次第。今回は成功時のみとするか、エラー情報も保存するか。
+            // ここではエラーの場合も保存を試みる（エラーメッセージがresponseTextに入る）
+            Task {
+                 await cloudViewModel.saveGPTResponse(
+                    objectName: objectName, 
+                    responseText: rawResponseText, 
+                    parsedExplanations: parsedResult // エラー情報を含むパース結果
+                )
+            }
         }
         
         await MainActor.run {
             isLoading = false
         }
         
-        return result
+        return parsedResult // 変数名を変更したため、ここも合わせる
     }
     
     func sendMessage() async {
