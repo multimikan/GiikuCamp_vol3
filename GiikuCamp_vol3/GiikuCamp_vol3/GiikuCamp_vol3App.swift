@@ -14,10 +14,12 @@ import FirebaseAuth
 @main
 struct GiikuCamp_vol3App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var authViewModel = AuthViewModel()
 
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            ContentView()
+                .environmentObject(authViewModel)
                 .onOpenURL { url in
                     // Google Sign-Inのリダイレクト処理
                     GIDSignIn.sharedInstance.handle(url)

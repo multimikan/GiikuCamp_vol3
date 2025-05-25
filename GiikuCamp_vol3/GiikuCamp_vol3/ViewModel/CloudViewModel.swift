@@ -2,12 +2,22 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+// Firestoreに保存するGPT応答ログのデータ構造
+struct GPTResponseLog: Codable, Identifiable {
+    @DocumentID var id: String?
+    let objectName: String
+    let responseText: String
+    let parsedExplanations: [[String: String]]? // Codableにするため、ValueもCodableである必要があるが、[String:String]はOK
+    let timestamp: Timestamp
+}
+
 class CloudViewModel: ObservableObject {
     @Published var data: Cloud
     private let db = Firestore.firestore()
     
     init() {
         self.data = Cloud(isAgree: false, born: 0, language: "日本語", favorite: [:], email: nil)
+        // init内でfetchCloudを呼ぶ場合、Taskで囲むと良い
         Task {
             await fetchCloud()
         }
@@ -24,7 +34,7 @@ class CloudViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.data = Cloud(
                             DocumentID: document.documentID,
-                            isAgree: document.data()?["isAgree"] as? Bool ?? false,
+                            isAgree: document.data()?["isAgree"] as? Bool ?? true,
                             born: document.data()?["born"] as? Int ?? 0,
                             language: document.data()?["language"] as? String ?? "日本語",
                             favorite: document.data()?["favorite"] as? [String: [String: Bool]] ?? [:],
@@ -40,13 +50,13 @@ class CloudViewModel: ObservableObject {
                     // 新しいドキュメントを作成
                     let newData = Cloud(
                         DocumentID: currentUserID,
-                        isAgree: false,
+                        isAgree: true,
                         born: 2004,
                         language: "日本",
                         favorite: [
-                            "小学": ["算数": true, "理科": true],
-                            "中学": ["数学": true, "理科": true],
-                            "高校": ["数学123": true, "数学ABC": true, "化学": true, "物理": true, "生物": true]
+                            "小学校": ["算数": true, "理科": true],
+                            "中学校": ["数学": true, "理科": true],
+                            "高校": ["数学123": true, "数学ABC": true, "化学": true, "物理": true]
                         ],
                         email: email
                     )
@@ -65,7 +75,7 @@ class CloudViewModel: ObservableObject {
                 // アプリ内で一時的に使用するデータを設定
                 DispatchQueue.main.async {
                     self.data = Cloud(
-                        isAgree: false,
+                        isAgree: true,
                         born: 0,
                         language: "日本語",
                         favorite: [:],
@@ -121,6 +131,30 @@ class CloudViewModel: ObservableObject {
             }
         } catch {
             print("Error writing document: \(error)")
+        }
+    }
+    
+    // 新しいメソッド: GPTの応答をFirestoreに保存
+    func saveGPTResponse(objectName: String, responseText: String, parsedExplanations: [[String: String]]?) async {
+        guard let userID = getCurrentUserID() else {
+            print("Error saving GPT response: User not logged in.")
+            return
+        }
+        
+        let logEntry = GPTResponseLog(
+            objectName: objectName,
+            responseText: responseText,
+            parsedExplanations: parsedExplanations,
+            timestamp: Timestamp(date: Date()) // 現在の日時
+        )
+        
+        do {
+            // AppUser/{userID}/GPT サブコレクションに新しいドキュメントとして追加
+            // DocumentIDはFirestoreが自動で生成
+            _ = try db.collection("AppUser").document(userID).collection("GPT").addDocument(from: logEntry)
+            print("GPT response for '\(objectName)' saved successfully for user \(userID).")
+        } catch {
+            print("Error saving GPT response to Firestore: \(error.localizedDescription)")
         }
     }
 }
