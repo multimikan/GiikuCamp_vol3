@@ -57,7 +57,7 @@ class ChatViewModel: ObservableObject {
         [
           {
             "subject": "関連する教科  名 (例: 理科, 算数など)",
-            "object": "\(language)語の\(objectName) (または関連する具体的なトピックやパーツ名)",
+            "object": "(\(language)語に変換した)\(objectName) (または関連する具体的なトピックやパーツ名)",
             "curriculum": "関連する学習単元名 (例: てこの原理, 二次関数など)",
             "description": "子ども向けの簡単な説明",
             "deep_description": "もう少し詳しく、興味を引くような説明"
