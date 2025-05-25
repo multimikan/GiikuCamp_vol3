@@ -6,7 +6,7 @@ struct GPTRequest: Encodable {
     let messages: [Message]
     let temperature: Float?
     
-    init(model: String = "gpt-4.1", messages: [Message], temperature: Float? = 0.7) {
+    init(model: String = "gpt-4o", messages: [Message], temperature: Float? = 0.7) {
         self.model = model
         self.messages = messages
         self.temperature = temperature

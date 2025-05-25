@@ -1,10 +1,15 @@
 import SwiftUI
 
 struct ExplanatoryView: View {
-    var subject: String = "物理"
-    var level: String = "高校"
-    var unit: String = "慣性の法則"
-    var description: String = "慣性の法則は、物体が外から力を受けない限り、その運動状態を保ち続けるという法則です。"
+    // ChatViewModelから渡されるデータ。最初の辞書要素を想定。
+    var data: [String: String]? 
+
+    // dataから取得した値を保持するプロパティ（デフォルト値も設定）
+    private var subject: String { data?["subject"] ?? "情報なし" }
+    private var level: String { data?["object"] ?? "情報なし" } // YOLOの物体名をレベルとして表示（変更可能）
+    private var unit: String { data?["curriculum"] ?? "情報なし" }
+    private var descriptionText: String { data?["description"] ?? "情報なし" } // descriptionキーを使用
+    // private var deepDescriptionText: String { data?["deep_description"] ?? "情報なし" } // 必要であれば詳細説明も
     
     @State private var isFavorite = false
     @State private var animateHeart = false
@@ -18,7 +23,7 @@ struct ExplanatoryView: View {
                     Text(subject)
                         .font(.title)
                         .fontWeight(.bold)
-                    Text(level)
+                    Text(level) // ここは "object" を表示する例
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
@@ -51,7 +56,7 @@ struct ExplanatoryView: View {
                 .fontWeight(.semibold)
             
             // 説明文
-            Text(description)
+            Text(descriptionText) // descriptionキーの内容を表示
                 .font(.body)
                 .lineSpacing(4)
             
@@ -77,8 +82,9 @@ struct ExplanatoryView: View {
                 isSaved.toggle()
             }) {
                 HStack {
+                    Spacer()
                     Label("AIに詳しく聞いてみる", systemImage: "wand.and.sparkles")
-                        .padding(.horizontal,48)
+                    Spacer()
                 }
                 //.frame(maxWidth: .infinity)
                 .padding(.vertical, 14)
@@ -105,13 +111,22 @@ struct ExplanatoryView: View {
 
 struct ExplanatoryTextView: View {
     @State private var isShowingModal = false
+    // テスト用のサンプルデータ
+    let sampleData: [String: String] = [
+        "subject": "物理学",
+        "object": "リンゴ",
+        "curriculum": "万有引力",
+        "description": "リンゴが木から落ちるのを見て、ニュートンは万有引力の法則を発見しました。",
+        "deep_description": "すべての物体は互いに引き合う力を持っており、その力は物体の質量に比例し、距離の二乗に反比例します。"
+    ]
 
     var body: some View {
         Button("説明を表示") {
             isShowingModal = true
         }
         .sheet(isPresented: $isShowingModal) {
-            ExplanatoryView()
+            // サンプルデータを渡して表示
+            ExplanatoryView(data: sampleData)
         }
     }
 }
@@ -119,23 +134,25 @@ struct ExplanatoryTextView: View {
 
 
 #Preview {
-    PreviewWrapper()
+    // PreviewWrapperをExplanatoryTextViewに置き換えて、サンプルデータでプレビュー
+    ExplanatoryTextView()
 }
 
-private struct PreviewWrapper: View {
-    @State var isShowingModal: Bool = false
-    
-    var body: some View {
-        VStack{
-        VStack{
-            Button("画像"){
-                isShowingModal = true
-            }
-        }
-    }
-        .halfModal(isShow: $isShowingModal) {
-            ExplanatoryView()
-        } onEnd: {
-        }
-    }
-}
+// PreviewWrapperは不要になるのでコメントアウトまたは削除
+//private struct PreviewWrapper: View {
+//    @State var isShowingModal: Bool = false
+//    
+//    var body: some View {
+//        VStack{
+//        VStack{
+//            Button("画像"){
+//                isShowingModal = true
+//            }
+//        }
+//    }
+//        .halfModal(isShow: $isShowingModal) {
+//            ExplanatoryView(data: nil) // dataプロパティを追加したのでnilを渡すか、サンプルデータを渡す
+//        } onEnd: {
+//        }
+//    }
+//}

@@ -42,8 +42,21 @@ struct HumburgerMenuSampleView: View {
     @State private var isHighBiologySelected = false
     @State private var isHighSocialSelected = false
 
-    
+    // ChatViewModel を @StateObject として保持
+    // CloudViewModelの初期化は適切に行う必要があります。
+    // ここでは仮にデフォルトイニシャライザを呼び出していますが、
+    // 実際のCloudViewModelの定義に合わせてください。
+    @StateObject private var cloudViewModel = CloudViewModel() // 仮の初期化
+    @StateObject private var chatViewModel: ChatViewModel
+
     let imageSize:CGFloat = 4
+    
+    // ChatViewModelの初期化をinitで行う
+    init() {
+        let cvm = CloudViewModel() // CloudViewModelを初期化
+        _cloudViewModel = StateObject(wrappedValue: cvm) // cloudViewModelをStateObjectとして初期化
+        _chatViewModel = StateObject(wrappedValue: ChatViewModel(cloudViewModel: cvm))
+    }
     
     var body: some View {
         ZStack {
@@ -77,8 +90,10 @@ struct HumburgerMenuSampleView: View {
                     }
                 }
             }
+            .environmentObject(chatViewModel) // chatViewModel を環境に設定
             .fullScreenCover(isPresented: $isSettingsPresented, content: {
                 SettingsSheetView(isSettingsPresented: $isSettingsPresented)
+                    .environmentObject(chatViewModel) // SettingsSheetViewにも渡す
             })
             // サイドメニュー
             if isMenuOpen {
@@ -98,9 +113,10 @@ struct HumburgerMenuSampleView: View {
                     }
                 }
 
-//                NavigationLink(destination: ChatView()){
+//                NavigationLink(destination: ChatView()){ // ChatViewにも必要なら渡す
 //                    Label("履歴",systemImage: "clock")
 //                }
+//                .environmentObject(chatViewModel)
                 
                 HStack {
                     Spacer()
@@ -231,13 +247,13 @@ struct HumburgerMenuSampleView: View {
                                 .padding(.vertical, 20)}
                         
                         //履歴
-                        NavigationLink(destination: ChatView()){
+                        NavigationLink(destination: ChatView().environmentObject(chatViewModel)){ // ChatViewに渡す
                             Label("履歴",systemImage: "clock")
                                 .padding(.vertical, 20)
                         }
                     
                         //お気に入り
-                        NavigationLink(destination: ChatView()){
+                        NavigationLink(destination: ChatView().environmentObject(chatViewModel)){ // ChatViewに渡す
                             Label("お気に入り", systemImage: "star")
                                 .padding(.vertical, 20)
                         }

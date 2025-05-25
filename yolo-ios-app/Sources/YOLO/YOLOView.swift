@@ -57,6 +57,9 @@ public class YOLOView: UIView, VideoCaptureDelegate {
   private var lastTapHandledTime: TimeInterval = 0 // タップ処理の最終実行時刻
   private let minTapInterval: TimeInterval = 0.5 // タップ処理の最小間隔（秒）
 
+  /// Callback for when an object is tapped. Provides a dictionary with object information.
+  public var onObjectTapped: (([String: String]) -> Void)?
+
   func onInferenceTime(speed: Double, fps: Double) {
     DispatchQueue.main.async {
       // self.labelFPS.text = String(format: "%.1f FPS - %.1f ms", fps, speed)  // t2 seconds to ms
@@ -1055,37 +1058,42 @@ public class YOLOView: UIView, VideoCaptureDelegate {
     let normalizedTapY = tapLocationInOverlay.y / self.overlayLayer.bounds.height
     let normalizedTapPoint = CGPoint(x: normalizedTapX, y: normalizedTapY)
 
-    // var tappedObjectsInfo: [String] = [] // 変更：直接文字列をためるのではなく、Boxオブジェクトをためる
     var tappedBoxesInLocation: [Box] = []
 
     for boxData in yoloResult.boxes {
-      // boxData.xywhn は正規化されたCGRect (左上原点と仮定)
       if boxData.xywhn.contains(normalizedTapPoint) {
-        // let objectInfo = "Tapped Object -> Name: \(boxData.cls), Index: \(boxData.index), Confidence: \(String(format: "%.2f", boxData.conf))"
-        // tappedObjectsInfo.append(objectInfo) // 変更
         tappedBoxesInLocation.append(boxData)
       }
     }
 
-    // if tappedObjectsInfo.isEmpty { // 変更
     if tappedBoxesInLocation.isEmpty {
-      print("YOLOView Tap: Tapped on background (no object detected at this specific tap location).")
+      // print("YOLOView Tap: Tapped on background (no object detected at this specific tap location).")
     } else {
-      // 最も信頼度の高いオブジェクトを選択
       let bestBox = tappedBoxesInLocation.max(by: { $0.conf < $1.conf })
       
       if let selectedBox = bestBox {
-        let objectInfo = "Tapped Object -> Name: \(selectedBox.cls), Index: \(selectedBox.index), Confidence: \(String(format: "%.2f", selectedBox.conf))"
-        print("--- YOLOView: Tapped Object Info ---") // 単数形に変更示唆
-        // for info in tappedObjectsInfo { // 変更：ループを削除
-        //   print(info)
-        // }
-        print(objectInfo) // 選択された情報のみ出力
-        print("-------------------------------------")
-        lastTapHandledTime = currentTime // 処理が実行されたので最終処理時刻を更新
+        // Prepare the dictionary to be passed to the callback
+        let objectInfoDict: [String: String] = [
+            "Name": selectedBox.cls,
+            "Index": String(selectedBox.index),
+            "Confidence": String(format: "%.2f", selectedBox.conf),
+            // Add other properties from selectedBox.xywh if needed, converting CGRect to String
+            "xywh_x": String(format: "%.2f", selectedBox.xywh.origin.x),
+            "xywh_y": String(format: "%.2f", selectedBox.xywh.origin.y),
+            "xywh_width": String(format: "%.2f", selectedBox.xywh.size.width),
+            "xywh_height": String(format: "%.2f", selectedBox.xywh.size.height)
+        ]
+        // Call the new callback
+        onObjectTapped?(objectInfoDict)
+        
+        // Original print statements (can be kept for debugging or removed)
+        // let consoleOutputInfo = "Tapped Object -> Name: \\(selectedBox.cls), Index: \\(selectedBox.index), Confidence: \\(String(format: "%.2f", selectedBox.conf))"
+        // print("--- YOLOView: Tapped Object Info ---")
+        // print(consoleOutputInfo)
+        // print("-------------------------------------")
+        lastTapHandledTime = currentTime
       } else {
-        // このケースはtappedBoxesInLocationが空でない限り通常発生しないはず
-        print("YOLOView Tap: Could not determine best object to display.")
+        // print("YOLOView Tap: Could not determine best object to display.")
       }
     }
   }
