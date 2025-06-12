@@ -12,41 +12,43 @@ struct SignInOptionsView: View {
     @EnvironmentObject private var viewModel: AuthViewModel
     
     var body: some View {
-        ZStack{
-            // 背景グラデーション
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(hex: "#FFFF00").opacity(0.2),
-                    Color(hex: "#0066FF").opacity(0.2)
-                ]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea() // 全画面に拡張
-            
-            VStack(spacing: 14) {
+        ZStack {
+            // メインのUI（前面）
+            VStack(spacing: 16) {
+                Spacer()
+                HStack{
+                Text("Chamelearnを\nはじめましょう")
+                    .font(.largeTitle)
+                    .bold()
+                }
+                .padding(.top)
                 
-                Text("サインイン方法を選択")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                    .padding()
+                Image("baby")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 180)
                 
-                SignInButton(label: "Appleでサインイン", systemImage: "applelogo", backgroundColor: .black)
-                SignInButton(label: "Googleでサインイン", systemImage: "globe", backgroundColor: .red, closure:{
+                Spacer()
+                
+                SignInButton(
+                    label: "Googleでサインイン",
+                    systemImage: "googleLogo"
+                ) {
                     Task {
                         await viewModel.signInWithGoogle()
-                    }})
-                SignInButton(label: "Yahoo! JAPAN IDでサインイン", systemImage: "person.circle", backgroundColor: .purple)
-                
-                Button("キャンセル") {
+                    }
+                }
+
+                Button("ゲストとして続行する") {
                     dismiss()
                 }
-                .foregroundColor(.blue)
-                .padding(.top, 40)
+                .foregroundColor(Color(uiColor: .black))
+                .padding(4)
             }
+            .frame(maxWidth: 380)
             .padding()
             
-            // ローディングインジケーター
+            // ローディングインジケーター（最前面）
             if viewModel.isLoading {
                 Color.black.opacity(0.4)
                     .ignoresSafeArea()
@@ -59,32 +61,48 @@ struct SignInOptionsView: View {
     }
 }
 
+
 struct SignInButton: View {
     var label: String
     var systemImage: String
-    var backgroundColor: Color
-    var closure:() -> Void = {}
+    var closure: () -> Void = {}
+    let radius: CGFloat = 32
 
     var body: some View {
         Button(action: {
             closure()
         }) {
             HStack {
-                Image(systemName: systemImage)
+                Image(systemImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24, height: 24)
+                    .padding(.leading, 8)
+
+                Spacer()
+
                 Text(label)
                     .fontWeight(.semibold)
+                    .foregroundColor(.black)
+
+                Spacer()
             }
-            .foregroundColor(.white)
             .padding()
-            .frame(maxWidth: .infinity)
-            .background(backgroundColor)
-            .cornerRadius(10)
+            .frame(height: 56)
+            .background(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: radius)
+                    .stroke(Color.black, lineWidth: 1.5)
+            )
+            .cornerRadius(radius)
         }
         .padding(.horizontal)
     }
 }
 
+
 #Preview {
         SignInOptionsView()
+        .environmentObject(AuthViewModel())
     }
 
