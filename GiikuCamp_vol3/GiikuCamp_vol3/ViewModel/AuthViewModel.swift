@@ -19,10 +19,10 @@ class AuthViewModel: ObservableObject {
             
             if let firebaseUser = firebaseUser {
                 self.user = AppUser(user: firebaseUser)
-                self.isAuthenticated = true
+                // self.isAuthenticated = true // この行をコメントアウトまたは削除
             } else {
                 self.user = nil
-                self.isAuthenticated = false
+                // self.isAuthenticated = false // この行も、ログアウト時に明示的に設定するため不要な場合がありますが、一旦残します
             }
         }
     }
@@ -66,7 +66,9 @@ class AuthViewModel: ObservableObject {
             let authResult = try await Auth.auth().signIn(with: credential)
             DispatchQueue.main.async {
                 self.user = AppUser(user: authResult.user)
+                print("[AuthViewModel] Setting isAuthenticated to true")
                 self.isAuthenticated = true
+                print("[AuthViewModel] isAuthenticated is now \(self.isAuthenticated)")
                 self.isLoading = false
             }
         } catch {

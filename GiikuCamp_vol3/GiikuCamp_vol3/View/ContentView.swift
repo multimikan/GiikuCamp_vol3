@@ -6,48 +6,57 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
-    @StateObject private var authViewModel = AuthViewModel()
+    @EnvironmentObject private var authViewModel: AuthViewModel
+    @StateObject private var cloudViewModel = CloudViewModel()
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ChatView()
-                
-                // ナビゲーションバーにプロフィールボタンを追加
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: ProfileView(authViewModel: authViewModel)) {
-                            if let photoURL = authViewModel.user?.photoURL {
-                                AsyncImage(url: photoURL) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 30, height: 30)
-                                        .clipShape(Circle())
-                                } placeholder: {
-                                    Circle()
-                                        .fill(Color.gray.opacity(0.3))
-                                        .frame(width: 30, height: 30)
-                                }
-                            } else {
-                                Image(systemName: "person.circle")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.primary)
-                            }
-                        }
+        Group {
+            if !authViewModel.isAuthenticated {
+                NavigationView {
+                    if !cloudViewModel.data.isAgree {
+                        TermsAgreementView(onAgree: { cloudViewModel.data.isAgree = true })
+                    } else {
+                        SignInOptionsView()
                     }
                 }
             }
-            .navigationTitle("GiikuCamp")
+        }
+        .fullScreenCover(isPresented: $authViewModel.isAuthenticated) {
+            Home()
+        }
+        .onChange(of: authViewModel.isAuthenticated) { newValue in
+            print("[ContentView] authViewModel.isAuthenticated changed to: \(newValue)")
         }
         .onAppear {
-            // 既存のユーザー情報を取得
-            if let currentUser = authViewModel.getCurrentUser() {
-                authViewModel.user = currentUser
-                authViewModel.isAuthenticated = true
+            // 既存の有効なユーザーがいるか厳密に確認
+            print("[ContentView] Checking authentication state...")
+            
+            // 一旦すべての認証状態をリセット（テスト用）
+            authViewModel.isAuthenticated = false
+            
+            // AuthViewModelのメソッドを使って確認
+            if let appUser = authViewModel.getCurrentUser() {
+                print("[ContentView] Found existing user: \(appUser.uid)")
+                
+                // 追加検証：Firebaseに再確認（オプション）
+                Auth.auth().currentUser?.getIDTokenResult(forcingRefresh: true) { tokenResult, error in
+                    if let error = error {
+                        print("[ContentView] Token verification failed: \(error.localizedDescription)")
+                        // トークン検証に失敗したらログイン状態はfalseのまま
+                    } else if let tokenResult = tokenResult {
+                        print("[ContentView] Token verified, expiration: \(tokenResult.expirationDate)")
+                        // トークンが有効なら認証済みとする
+                        DispatchQueue.main.async {
+                            authViewModel.user = appUser
+                            authViewModel.isAuthenticated = true
+                        }
+                    }
+                }
+            } else {
+                print("[ContentView] No existing user found")
             }
         }
     }

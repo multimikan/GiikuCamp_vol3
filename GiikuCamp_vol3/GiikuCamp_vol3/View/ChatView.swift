@@ -68,7 +68,7 @@ struct ChatView: View {
                 }
                 .disabled(viewModel.isLoading || viewModel.inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 NavigationLink("📷絶対決めてみせる"){
-                    SampleCameraView()
+                    CameraView()
                 }
             }
             .padding()

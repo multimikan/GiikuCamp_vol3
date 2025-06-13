@@ -10,20 +10,23 @@
 		81008FED2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
-		8100B7E52DDB939B00723102 /* YOLO in Frameworks */ = {isa = PBXBuildFile; productRef = 8100B7E42DDB939B00723102 /* YOLO */; };
-		8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
-		8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
-		8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */; };
-		8124D5AC2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
-		8124D5AD2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
-		8124D5AE2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */; };
-		8124D5B02DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
-		8124D5B12DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
-		8124D5B22DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */; };
+		8128CB2F2DE0D2CF004FC816 /* YOLO in Frameworks */ = {isa = PBXBuildFile; productRef = 8128CB2E2DE0D2CF004FC816 /* YOLO */; };
 		819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 819501382DDDC58900F8637B /* FirebaseFirestore */; };
 		81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 81CB01672DDC77A20029E819 /* FirebaseAuth */; };
 		81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC52DDC918200A03B41 /* GoogleSignIn */; };
 		81D39FC82DDC918200A03B41 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC72DDC918200A03B41 /* GoogleSignInSwift */; };
+		81E03DBF2DE0A57F001643D4 /* yolo11m.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DBE2DE0A57F001643D4 /* yolo11m.mlpackage */; };
+		81E03DC02DE0A57F001643D4 /* yolo11m.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DBE2DE0A57F001643D4 /* yolo11m.mlpackage */; };
+		81E03DC12DE0A57F001643D4 /* yolo11m.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DBE2DE0A57F001643D4 /* yolo11m.mlpackage */; };
+		81E03DC52DE0A794001643D4 /* yolo11s.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC32DE0A794001643D4 /* yolo11s.mlpackage */; };
+		81E03DC62DE0A794001643D4 /* yolo11x.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC42DE0A794001643D4 /* yolo11x.mlpackage */; };
+		81E03DC72DE0A794001643D4 /* yolo11n.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC22DE0A794001643D4 /* yolo11n.mlpackage */; };
+		81E03DC82DE0A794001643D4 /* yolo11s.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC32DE0A794001643D4 /* yolo11s.mlpackage */; };
+		81E03DC92DE0A794001643D4 /* yolo11x.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC42DE0A794001643D4 /* yolo11x.mlpackage */; };
+		81E03DCA2DE0A794001643D4 /* yolo11n.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC22DE0A794001643D4 /* yolo11n.mlpackage */; };
+		81E03DCB2DE0A794001643D4 /* yolo11s.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC32DE0A794001643D4 /* yolo11s.mlpackage */; };
+		81E03DCC2DE0A794001643D4 /* yolo11x.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC42DE0A794001643D4 /* yolo11x.mlpackage */; };
+		81E03DCD2DE0A794001643D4 /* yolo11n.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 81E03DC22DE0A794001643D4 /* yolo11n.mlpackage */; };
 		9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
@@ -46,9 +49,10 @@
 
 /* Begin PBXFileReference section */
 		81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11m-seg.mlpackage"; sourceTree = "<group>"; };
-		8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11s-seg.mlpackage"; sourceTree = "<group>"; };
-		8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolo11n-seg.mlpackage"; sourceTree = "<group>"; };
+		81E03DBE2DE0A57F001643D4 /* yolo11m.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo11m.mlpackage; sourceTree = "<group>"; };
+		81E03DC22DE0A794001643D4 /* yolo11n.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo11n.mlpackage; sourceTree = "<group>"; };
+		81E03DC32DE0A794001643D4 /* yolo11s.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo11s.mlpackage; sourceTree = "<group>"; };
+		81E03DC42DE0A794001643D4 /* yolo11x.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo11x.mlpackage; sourceTree = "<group>"; };
 		81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiikuCamp_vol3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED901D2DD7052B00EB4E93 /* GiikuCamp_vol3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED90272DD7052B00EB4E93 /* GiikuCamp_vol3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiikuCamp_vol3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,10 +82,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81D39FC82DDC918200A03B41 /* GoogleSignInSwift in Frameworks */,
+				8128CB2F2DE0D2CF004FC816 /* YOLO in Frameworks */,
 				9BBFAE8A2DD7450400CBD575 /* FirebaseAnalytics in Frameworks */,
 				81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */,
 				81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */,
-				8100B7E52DDB939B00723102 /* YOLO in Frameworks */,
 				819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,10 +122,11 @@
 				81ED902A2DD7052B00EB4E93 /* GiikuCamp_vol3UITests */,
 				81ED900E2DD7052A00EB4E93 /* Products */,
 				81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */,
-				8100B8112DDB95F300723102 /* yolo11m-seg.mlpackage */,
 				819501372DDDC58900F8637B /* Frameworks */,
-				8124D5AB2DDF785C00F80FAD /* yolo11s-seg.mlpackage */,
-				8124D5AF2DDF792A00F80FAD /* yolo11n-seg.mlpackage */,
+				81E03DBE2DE0A57F001643D4 /* yolo11m.mlpackage */,
+				81E03DC22DE0A794001643D4 /* yolo11n.mlpackage */,
+				81E03DC32DE0A794001643D4 /* yolo11s.mlpackage */,
+				81E03DC42DE0A794001643D4 /* yolo11x.mlpackage */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,11 +161,11 @@
 			name = GiikuCamp_vol3;
 			packageProductDependencies = (
 				9BBFAE892DD7450400CBD575 /* FirebaseAnalytics */,
-				8100B7E42DDB939B00723102 /* YOLO */,
 				81CB01672DDC77A20029E819 /* FirebaseAuth */,
 				81D39FC52DDC918200A03B41 /* GoogleSignIn */,
 				81D39FC72DDC918200A03B41 /* GoogleSignInSwift */,
 				819501382DDDC58900F8637B /* FirebaseFirestore */,
+				8128CB2E2DE0D2CF004FC816 /* YOLO */,
 			);
 			productName = GiikuCamp_vol3;
 			productReference = 81ED900D2DD7052A00EB4E93 /* GiikuCamp_vol3.app */;
@@ -246,8 +251,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				9BBFAE882DD7450400CBD575 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */,
 				81D39FC42DDC918200A03B41 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				8128CB2D2DE0D2CF004FC816 /* XCLocalSwiftPackageReference "../yolo-ios-app" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 81ED900E2DD7052A00EB4E93 /* Products */;
@@ -293,9 +298,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8124D5AE2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
-				8124D5B12DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
-				8100B8142DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
+				81E03DC52DE0A794001643D4 /* yolo11s.mlpackage in Sources */,
+				81E03DC62DE0A794001643D4 /* yolo11x.mlpackage in Sources */,
+				81E03DC72DE0A794001643D4 /* yolo11n.mlpackage in Sources */,
+				81E03DC12DE0A57F001643D4 /* yolo11m.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,9 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8100B8132DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
-				8124D5AD2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
-				8124D5B22DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
+				81E03DC82DE0A794001643D4 /* yolo11s.mlpackage in Sources */,
+				81E03DC92DE0A794001643D4 /* yolo11x.mlpackage in Sources */,
+				81E03DCA2DE0A794001643D4 /* yolo11n.mlpackage in Sources */,
+				81E03DBF2DE0A57F001643D4 /* yolo11m.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,9 +320,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8124D5AC2DDF785C00F80FAD /* yolo11s-seg.mlpackage in Sources */,
-				8100B8122DDB95F300723102 /* yolo11m-seg.mlpackage in Sources */,
-				8124D5B02DDF792A00F80FAD /* yolo11n-seg.mlpackage in Sources */,
+				81E03DCB2DE0A794001643D4 /* yolo11s.mlpackage in Sources */,
+				81E03DCC2DE0A794001643D4 /* yolo11x.mlpackage in Sources */,
+				81E03DCD2DE0A794001643D4 /* yolo11n.mlpackage in Sources */,
+				81E03DC02DE0A57F001643D4 /* yolo11m.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,10 +470,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GiikuCamp_vol3/Preview Content\"";
-				DEVELOPMENT_TEAM = 76RN82DG87;
+				DEVELOPMENT_TEAM = C953UM8YY2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "GiikuCamp-vol3-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = APPL;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -493,10 +502,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GiikuCamp_vol3/Preview Content\"";
-				DEVELOPMENT_TEAM = 76RN82DG87;
+				DEVELOPMENT_TEAM = C953UM8YY2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "GiikuCamp-vol3-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = APPL;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -629,15 +639,14 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ultralytics/yolo-ios-app";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		8128CB2D2DE0D2CF004FC816 /* XCLocalSwiftPackageReference "../yolo-ios-app" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../yolo-ios-app";
 		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
 		81D39FC42DDC918200A03B41 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -657,9 +666,8 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8100B7E42DDB939B00723102 /* YOLO */ = {
+		8128CB2E2DE0D2CF004FC816 /* YOLO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8100B7E32DDB939B00723102 /* XCRemoteSwiftPackageReference "yolo-ios-app" */;
 			productName = YOLO;
 		};
 		819501382DDDC58900F8637B /* FirebaseFirestore */ = {
