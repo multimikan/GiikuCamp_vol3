@@ -24,3 +24,5 @@
 ## About
 技育キャンプvol.3 2025年05月 制作
 チーム16 はりとまとL
+高橋 @multimikan
+左 @rikopin32
