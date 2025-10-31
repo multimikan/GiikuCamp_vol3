@@ -11,6 +11,9 @@
 		81008FEE2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		81008FEF2DD8AA9600A4EA91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */; };
 		8128CB2F2DE0D2CF004FC816 /* YOLO in Frameworks */ = {isa = PBXBuildFile; productRef = 8128CB2E2DE0D2CF004FC816 /* YOLO */; };
+		816B06FC2EB49C7A00FEC232 /* environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B06FB2EB49C7400FEC232 /* environment.swift */; };
+		816B06FD2EB49C7A00FEC232 /* environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B06FB2EB49C7400FEC232 /* environment.swift */; };
+		816B06FE2EB49C7A00FEC232 /* environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B06FB2EB49C7400FEC232 /* environment.swift */; };
 		819501392DDDC58900F8637B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 819501382DDDC58900F8637B /* FirebaseFirestore */; };
 		81CB01682DDC77A20029E819 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 81CB01672DDC77A20029E819 /* FirebaseAuth */; };
 		81D39FC62DDC918200A03B41 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 81D39FC52DDC918200A03B41 /* GoogleSignIn */; };
@@ -49,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		81008FEC2DD8AA9600A4EA91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		816B06FB2EB49C7400FEC232 /* environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = environment.swift; sourceTree = "<group>"; };
 		81E03DBE2DE0A57F001643D4 /* yolo11m.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo11m.mlpackage; sourceTree = "<group>"; };
 		81E03DC22DE0A794001643D4 /* yolo11n.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo11n.mlpackage; sourceTree = "<group>"; };
 		81E03DC32DE0A794001643D4 /* yolo11s.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo11s.mlpackage; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 		81ED90042DD7052A00EB4E93 = {
 			isa = PBXGroup;
 			children = (
+				816B06FB2EB49C7400FEC232 /* environment.swift */,
 				81ED900F2DD7052A00EB4E93 /* GiikuCamp_vol3 */,
 				81ED90202DD7052B00EB4E93 /* GiikuCamp_vol3Tests */,
 				81ED902A2DD7052B00EB4E93 /* GiikuCamp_vol3UITests */,
@@ -299,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81E03DC52DE0A794001643D4 /* yolo11s.mlpackage in Sources */,
+				816B06FD2EB49C7A00FEC232 /* environment.swift in Sources */,
 				81E03DC62DE0A794001643D4 /* yolo11x.mlpackage in Sources */,
 				81E03DC72DE0A794001643D4 /* yolo11n.mlpackage in Sources */,
 				81E03DC12DE0A57F001643D4 /* yolo11m.mlpackage in Sources */,
@@ -313,6 +319,7 @@
 				81E03DC92DE0A794001643D4 /* yolo11x.mlpackage in Sources */,
 				81E03DCA2DE0A794001643D4 /* yolo11n.mlpackage in Sources */,
 				81E03DBF2DE0A57F001643D4 /* yolo11m.mlpackage in Sources */,
+				816B06FC2EB49C7A00FEC232 /* environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +330,7 @@
 				81E03DCB2DE0A794001643D4 /* yolo11s.mlpackage in Sources */,
 				81E03DCC2DE0A794001643D4 /* yolo11x.mlpackage in Sources */,
 				81E03DCD2DE0A794001643D4 /* yolo11n.mlpackage in Sources */,
+				816B06FE2EB49C7A00FEC232 /* environment.swift in Sources */,
 				81E03DC02DE0A57F001643D4 /* yolo11m.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

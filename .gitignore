@@ -78,3 +78,5 @@ yarn-error.log
 coverage
 dist
 .firebase
+*.swift
+/GiikuCamp_vol3
