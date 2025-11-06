@@ -76,3 +76,6 @@ struct HalfModalSheet<Sheet: View>: UIViewControllerRepresentable {
     }
   }
 }
+#Preview {
+    HalfModalSheet(sheet: Text("Hello"), isShow: .constant(true), onClose: {})
+}

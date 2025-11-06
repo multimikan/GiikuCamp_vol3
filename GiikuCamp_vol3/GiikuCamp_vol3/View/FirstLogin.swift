@@ -20,7 +20,6 @@ struct FirstLogin: View {
             .tag(0)
 
             SignInOptionsView()
-                .environmentObject(AuthViewModel())
                 .tag(1)
         }
         .edgesIgnoringSafeArea(.all)

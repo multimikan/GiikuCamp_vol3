@@ -15,11 +15,11 @@ struct ContentView: View {
     var body: some View {
         Group {
             if !authViewModel.isAuthenticated {
-                NavigationView {
+                NavigationStack {
                     if !cloudViewModel.data.isAgree {
                         TermsAgreementView(onAgree: { cloudViewModel.data.isAgree = true })
                     } else {
-                        SignInOptionsView()
+                        FirstLogin()
                     }
                 }
             }
@@ -63,5 +63,8 @@ struct ContentView: View {
 }
 
 #Preview {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var authViewModel = AuthViewModel()
     ContentView()
+        .environmentObject(authViewModel)
 }
