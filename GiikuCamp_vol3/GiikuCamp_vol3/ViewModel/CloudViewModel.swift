@@ -16,7 +16,17 @@ class CloudViewModel: ObservableObject {
     private let db = Firestore.firestore()
     
     init() {
-        self.data = Cloud(isAgree: false, born: 0, language: "日本語", favorite: [:], email: nil)
+        self.data = Cloud(
+            isAgree: false,
+            born: 0,
+            language: "日本語",
+            favorite: [
+                "小学校": ["算数": true, "理科": true],
+                "中学校": ["数学": true, "理科": true],
+                "高校": ["数学": true, "化学": true, "物理": true]
+            ],
+            email: nil
+        )
         // init内でfetchCloudを呼ぶ場合、Taskで囲むと良い
         Task {
             await fetchCloud()
@@ -56,7 +66,7 @@ class CloudViewModel: ObservableObject {
                         favorite: [
                             "小学校": ["算数": true, "理科": true],
                             "中学校": ["数学": true, "理科": true],
-                            "高校": ["数学123": true, "数学ABC": true, "化学": true, "物理": true]
+                            "高校": ["数学": true, "化学": true, "物理": true]
                         ],
                         email: email
                     )
@@ -78,7 +88,11 @@ class CloudViewModel: ObservableObject {
                         isAgree: true,
                         born: 0,
                         language: "日本語",
-                        favorite: [:],
+                        favorite: [
+                            "小学校": ["算数": true, "理科": true],
+                            "中学校": ["数学": true, "理科": true],
+                            "高校": ["数学": true, "化学": true, "物理": true]
+                        ],
                         email: nil
                     )
                 }
@@ -158,3 +172,4 @@ class CloudViewModel: ObservableObject {
         }
     }
 }
+

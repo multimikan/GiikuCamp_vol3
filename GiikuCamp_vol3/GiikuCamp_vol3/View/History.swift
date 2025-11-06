@@ -146,7 +146,7 @@ class HistoryViewModel: ObservableObject {
             print("History item (docID: \(docID)) deleted successfully.")
         } catch {
             print("Error deleting history item: \(error.localizedDescription)")
-            self.errorMessage = "履歴アイテムの削除に失敗しました。"
+            self.errorMessage = "まだ検索履歴がないようです"
         }
     }
 }
@@ -162,13 +162,19 @@ struct HistoryView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .center) {
                 if viewModel.isLoading {
                     ProgressView("履歴を読み込み中...")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else if let errorMessage = viewModel.errorMessage {
+                    Image(systemName: "books.vertical.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 128)
+                        .padding(32)
                     Text(errorMessage)
-                        .foregroundColor(.red)
+                        .bold(true)
+                        .font(.title3)
                         .padding()
                 } else {
                     HStack {
@@ -187,6 +193,7 @@ struct HistoryView: View {
 
                     ScrollView {
                         if viewModel.filteredHistoryItems.isEmpty {
+                            Image(systemName: "books.vertical.fill")
                             Text("履歴はありません。")
                                 .foregroundColor(.gray)
                                 .padding()
